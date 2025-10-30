@@ -92,7 +92,7 @@ La calidad final dependerá del modelo utilizado y del nivel de detalle del *pro
 ### 🧪 Prueba a realizar
 
 **Prueba:** Se utilizó **DALL·E** para generar una imagen de un *Big Daddy* de la saga **Bioshock**.
-
+**La imagen generada se encuentra en el PDF adjuntado**
 **Resultado:**  
 El modelo generó una figura humanoide con un estilo cercano, pero no idéntico al diseño original.  
 Fue necesario refinar el *prompt* para acercar el resultado al modelo deseado.
