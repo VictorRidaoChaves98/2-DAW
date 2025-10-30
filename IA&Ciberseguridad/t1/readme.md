@@ -55,6 +55,7 @@ Hoy en día, gracias al auge de las inteligencias artificiales, tenemos muchas o
 
 **Prueba:** Se le pidió a ChatGPT que generase un fragmento de código JavaScript que calcule la media de una lista de números.
 
+````JavaScript
 function calcularMedia(numeros) {
   let suma = 0;
   for (let num of numeros) {
@@ -62,6 +63,7 @@ function calcularMedia(numeros) {
   }
   return suma / numeros.length;
 }
+`````
 
 ## 🎨 I.A. Generativa de Imágenes
 
@@ -127,6 +129,7 @@ Se escribió el comentario:
 
 // función que calcule si un número es primo
 
+```JavaScript
 function esPrimo(numero) {
   if (numero <= 1) return false;
   for (let i = 2; i < numero; i++) {
@@ -137,3 +140,4 @@ function esPrimo(numero) {
 
 
 console.log(calcularMedia([5, 7, 9, 10])); // Resultado: 7.75
+````
