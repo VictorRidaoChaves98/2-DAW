@@ -1,0 +1,16 @@
+<svg width="135" height="77" viewBox="0 0 135 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_28_71" fill="white">
+<rect width="99" height="51" rx="3"/>
+</mask>
+<rect width="99" height="51" rx="3" fill="white" stroke="black" stroke-width="10" mask="url(#path-1-inside-1_28_71)"/>
+<line x1="3" y1="35.5" x2="96" y2="35.5" stroke="black" stroke-width="3"/>
+<line x1="3" y1="24.5" x2="96" y2="24.5" stroke="black" stroke-width="3"/>
+<line x1="3" y1="14.5" x2="96" y2="14.5" stroke="black" stroke-width="3"/>
+<rect x="104.5" y="9.5" width="28" height="39" fill="white" stroke="black" stroke-width="5"/>
+<rect x="66.5" y="54.5" width="30" height="15" fill="white" stroke="black" stroke-width="5"/>
+<line x1="132.5" y1="51" x2="132.5" y2="72" stroke="black" stroke-width="5"/>
+<rect x="110.5" y="15.5" width="15" height="10" fill="#D9D9D9" stroke="black" stroke-width="3"/>
+<path d="M18.5967 54.1646C23.8605 54.1646 28.1934 58.4978 28.1934 63.9243C28.1933 69.3507 23.8604 73.6841 18.5967 73.6841C13.3329 73.6841 9.00011 69.3507 9 63.9243C9 58.4978 13.3328 54.1646 18.5967 54.1646Z" fill="white" stroke="black" stroke-width="6"/>
+<path d="M47.605 54.1646C52.8688 54.1646 57.2017 58.4978 57.2017 63.9243C57.2016 69.3507 52.8687 73.6841 47.605 73.6841C42.3412 73.6841 38.0084 69.3507 38.0083 63.9243C38.0083 58.4978 42.3411 54.1646 47.605 54.1646Z" fill="white" stroke="black" stroke-width="6"/>
+<path d="M114.547 54.1646C119.811 54.1646 124.144 58.4978 124.144 63.9243C124.143 69.3507 119.811 73.6841 114.547 73.6841C109.283 73.6841 104.95 69.3507 104.95 63.9243C104.95 58.4978 109.283 54.1646 114.547 54.1646Z" fill="white" stroke="black" stroke-width="6"/>
+</svg>
