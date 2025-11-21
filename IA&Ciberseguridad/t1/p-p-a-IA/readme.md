@@ -82,5 +82,5 @@ El análisis final debe detallar:
 
 ![Puerto Localhost:3000](imagenes/localhost3000.png)
 
-![Resultado de la partida](imagenes/pruebaPlayerIA.png)
+![Resultado de la partida](imagenes/pruebaPlayer-IA.png)
 
