@@ -1,4 +1,4 @@
-# 📝 Enunciado del Ejercicio: Piedra, Papel o Tijeras con Análisis Predictivo --> Más abajo los resultados
+# 📝 Enunciado del Ejercicio: Piedra, Papel o Tijeras con Análisis Predictivo --> Más abajo imágenes con los resultados
 
 Este documento describe la mecánica y los esquemas de datos para un ejercicio automatizado de **Piedra, Papel o Tijeras** donde la **Máquina (IA)** actúa como un agente analítico, intentando predecir el patrón de juego del **Jugador (Usuario)**.
 
@@ -80,7 +80,7 @@ El análisis final debe detallar:
 
 -----
 
-![Puerto Localhost:3000](localhost3000.png)
+![Puerto Localhost:3000](imagenes/localhost3000.png)
 
-![Resultado de la partida](pruebaPlayerIA.png)
+![Resultado de la partida](imagenes/pruebaPlayerIA.png)
 
