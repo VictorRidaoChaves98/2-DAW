@@ -59,7 +59,7 @@ Opcional (CLI):
 ![API en VSCode](./imagenes/APIvscodeScreen.png)
 
 ## Estructura de carpetas en Visual Studio Code
-![Tree en vscode](./imagenes/APItree)
+![Tree en vscode](./imagenes/APItree.png)
 
 ## Gif con el recorrido de la API desde Visaul Studio 2022 con SWApi
 ![Recorrido API Star Wars](./imagenes/APIRecorrido.gif)
