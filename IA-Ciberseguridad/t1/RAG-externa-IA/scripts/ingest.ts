@@ -8,78 +8,93 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
 
-const client = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const CHUNK_SIZE = 512;
+const CHUNK_OVERLAP = 50;
+const BATCH_SIZE = 100;
 
-// Implementar chunking manualmente
-function chunkText(text: string, chunkSize: number = 512, overlap: number = 50): string[] {
+const apiKey = process.env.GOOGLE_API_KEY;
+if (!apiKey) {
+  throw new Error('GOOGLE_API_KEY not configured');
+}
+
+const googleClient = new GoogleGenerativeAI(apiKey);
+const embeddingModel = googleClient.getGenerativeModel({
+  model: 'text-embedding-004',
+});
+
+function chunkText(text: string, size: number = CHUNK_SIZE, overlap: number = CHUNK_OVERLAP): string[] {
   const chunks: string[] = [];
-  let currentPos = 0;
+  let pos = 0;
 
-  while (currentPos < text.length) {
-    const chunk = text.slice(currentPos, currentPos + chunkSize);
-    chunks.push(chunk);
-    currentPos += chunkSize - overlap;
+  while (pos < text.length) {
+    chunks.push(text.slice(pos, pos + size));
+    pos += size - overlap;
   }
 
   return chunks;
 }
 
-// Función auxiliar para dividir un array en lotes de un tamaño específico
-function chunkArray<T>(array: T[], chunkSize: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    result.push(array.slice(i, i + chunkSize));
+function batchArray<T>(array: T[], size: number): T[][] {
+  const batches: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    batches.push(array.slice(i, i + size));
   }
-  return result;
+  return batches;
 }
 
-async function main() {
-  console.log('Iniciando pipeline de ingesta...');
+async function ingestDocument() {
+  console.log('Starting ingestion pipeline...\n');
 
-  // 1. Conectar a la base de datos
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error('La variable de entorno DATABASE_URL no está definida.');
+  // 1. Database connection
+  const dbUrl = process.env.DATABASE_URL;
+  if (!dbUrl) {
+    throw new Error('DATABASE_URL not configured');
   }
-  const dbClient = postgres(connectionString, { max: 1 });
+
+  const dbClient = postgres(dbUrl, { max: 1 });
   const db = drizzle(dbClient);
-  console.log('Conectado a la base de datos.');
+  console.log('✓ Connected to database');
 
-  // 2. Cargar y Extraer Texto del Documento
+  // 2. Load document
   const filePath = path.join(process.cwd(), 'data', 'documento.txt');
-  const fileContent = await fs.readFile(filePath, 'utf-8');
-  console.log('Documento cargado.');
+  const content = await fs.readFile(filePath, 'utf-8');
+  console.log('✓ Document loaded');
 
-  // 3. Chunking (División) del Documento
-  const textChunks = chunkText(fileContent, 512, 50);
-  console.log(`Documento dividido en ${textChunks.length} chunks.`);
+  // 3. Chunk text
+  const textChunks = chunkText(content);
+  console.log(`✓ Document split into ${textChunks.length} chunks\n`);
 
-  // Define el tamaño del lote
-  const BATCH_SIZE = 100;
-  const textChunksBatches = chunkArray(textChunks, BATCH_SIZE);
+  // 4. Process in batches
+  const batches = batchArray(textChunks, BATCH_SIZE);
+  console.log(`Processing ${batches.length} batches...\n`);
 
-  console.log(`Procesando en ${textChunksBatches.length} lotes de hasta ${BATCH_SIZE} chunks cada uno.`);
+  for (let i = 0; i < batches.length; i++) {
+    const batch = batches[i];
+    console.log(`Batch ${i + 1}/${batches.length} (${batch.length} chunks)`);
 
-  for (let i = 0; i < textChunksBatches.length; i++) {
-    const batch = textChunksBatches[i];
-    console.log(`Procesando lote ${i + 1}/${textChunksBatches.length} con ${batch.length} chunks...`);
-
-    // 4. Generación de Embeddings para el lote actual
-    console.log('Generando embeddings para el lote...');
-    const embeddingModel = client.getGenerativeModel({
-      model: 'text-embedding-004',
-    });
-
+    // Generate embeddings
     const embeddings = [];
     for (const text of batch) {
       const result = await embeddingModel.embedContent(text);
       embeddings.push(result.embedding.values);
     }
-    console.log(`Se generaron ${embeddings.length} embeddings para el lote.`);
+    console.log(`  ✓ Generated ${embeddings.length} embeddings`);
 
-    // 5. Almacenamiento en la Base de Datos Vectorial para el lote actual
-    const dataToInsert = batch.map((content, j) => ({
+    // Store in database
+    const records = batch.map((content, idx) => ({
       content,
+      embedding: embeddings[idx],
+    }));
+
+    await db.insert(chunksSchema).values(records);
+    console.log(`  ✓ Stored in database\n`);
+  }
+
+  console.log('✓ Ingestion complete!');
+  await dbClient.end();
+}
+
+ingestDocument().catch(console.error);
       embedding: embeddings[j],
     }));
     console.log('Insertando chunks y embeddings del lote en la base de datos...');

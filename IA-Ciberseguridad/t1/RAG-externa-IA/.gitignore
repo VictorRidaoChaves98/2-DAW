@@ -1,21 +1,60 @@
+# Dependencies
 node_modules/
-dist/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Environment variables
 .env
 .env.local
 .env.*.local
+
+# Build output
 .next/
 out/
+dist/
+build/
+
+# OS files
 .DS_Store
+Thumbs.db
 *.log
+*.log.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.sublime-workspace
+
+# Runtime
+.run/
+*.pid
+*.seed
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.eslintcache
+.turbo
+
+# Local development
+debug.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-.eslintcache
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.cache/
-drizzle/0*.sql
+
+# Drizzle migrations (generated)
+drizzle/*.sql

@@ -1,53 +1,92 @@
-# 🎯 RAG - Memoria Externa para la IA
+# RAG - Retrieval-Augmented Generation
 
-Este proyecto implementa un sistema **Retrieval-Augmented Generation (RAG)** para dotar a un asistente de IA de memoria externa mediante PostgreSQL con extensión `pgvector`.
+Un sistema que indexa documentos y responde preguntas usando búsqueda vectorial + modelo de lenguaje.
 
-## 📋 Requisitos
+## 🎯 Funcionalidades
 
-- Node.js 18+
-- PostgreSQL 13+ con extensión `pgvector`
-- API Key de Google AI
+- Indexación automática de documentos con embeddings vectoriales.
+- Búsqueda semántica en tiempo real usando pgvector (Neon).
+- Generación de respuestas fundamentadas en contexto.
+- Validación: si no hay información relevante, responde honestamente.
 
-## 🚀 Pasos de Setup
+## 🚀 Inicio rápido
 
 ### 1. Instalar dependencias
-
 ```bash
 npm install
-# o
-pnpm install
 ```
 
-### 2. Configurar variables de entorno
-
-Edita el archivo `.env.local` con tu información:
-
+### 2. Configurar `.env.local`
 ```env
-DATABASE_URL=postgresql://usuario:contraseña@host:5432/nombre_bd
-GOOGLE_API_KEY=tu_api_key
+DATABASE_URL=postgresql://...     # Tu conexión a Neon
+GOOGLE_API_KEY=...                # Google embeddings
+GITHUB_MODELS_TOKEN=...           # GitHub Marketplace token
 ```
 
-**Para obtener una BD PostgreSQL gestionada:**
-- Usa [Neon](https://neon.tech) (recomendado)
-- Usa [Supabase](https://supabase.com)
-
-Ambos servicios incluyen `pgvector` habilitado por defecto.
-
-### 3. Crear la tabla en la base de datos
-
+### 3. Preparar BD
 ```bash
-npm run db:generate    # Genera la migración SQL
-npm run db:push        # Aplica la migración a la BD
+npm run db:generate
+npm run db:push
 ```
 
-### 4. Ejecutar el script de ingesta
-
+### 4. Ingestar documento
 ```bash
 npm run ingest
 ```
 
-Este script:
-- Lee `data/documento.txt`
+### 5. Iniciar servidor
+```bash
+npm run dev
+```
+Abre http://localhost:3000 y pregunta sobre RAG.
+
+## 📁 Estructura
+
+```
+src/
+  app/api/
+    rag/          → Pregunta + respuesta (POST)
+    health/       → Verificar modelo (GET)
+    debug-rag/    → Ver fragmentos (POST)
+  page.tsx        → Chat UI
+  lib/ai/rag.ts   → Búsqueda vectorial
+scripts/ingest.ts → Ingesta de documentos
+data/documento.txt → Documento a indexar
+```
+
+## 🔌 Endpoints
+
+**POST `/api/rag`** - Pregunta
+```bash
+curl -X POST http://localhost:3000/api/rag \
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"¿Qué es RAG?"}]}'
+```
+
+**GET `/api/health`** - Verificar modelo
+
+**POST `/api/debug-rag`** - Ver fragmentos recuperados
+```bash
+curl -X POST http://localhost:3000/api/debug-rag \
+  -H "Content-Type: application/json" \
+  -d '{"query":"¿Qué es RAG?","k":5}'
+```
+
+## 🛠 Tecnologías
+
+- Next.js 15 + React 19
+- PostgreSQL (Neon) + pgvector
+- Google Generative AI (embeddings)
+- GitHub Models (generación)
+- Drizzle ORM
+
+## 📝 Comportamiento
+
+- **Con contexto**: Responde basándose en fragmentos indexados.
+- **Sin contexto**: "No tengo suficiente información en mi base de conocimientos para responder a esa pregunta."
+- **Fallback**: gpt-4o-mini → gpt-4o si el primero no está disponible.
+
+¡Listo! 🎉
 - Lo divide en chunks de 512 caracteres
 - Genera embeddings con Google AI (768 dimensiones)
 - Almacena chunks + embeddings en PostgreSQL

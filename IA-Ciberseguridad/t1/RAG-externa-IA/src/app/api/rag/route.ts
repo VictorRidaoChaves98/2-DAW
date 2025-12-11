@@ -2,106 +2,99 @@ import { findRelevantChunks } from '@/lib/ai/rag';
 
 export const maxDuration = 30;
 
+const NO_INFO_MESSAGE = 'No tengo suficiente información en mi base de conocimientos para responder a esa pregunta.';
+const SYSTEM_PROMPT_BASE = 'Eres un asistente experto y honesto. Usa solo el contexto proporcionado. Si la respuesta no está en el contexto, responde con el mensaje exacto: "No tengo suficiente información en mi base de conocimientos para responder a esa pregunta."';
+
+function extractUserMessage(msg: any): string {
+  if (typeof msg.content === 'string') return msg.content;
+  if (Array.isArray(msg.parts)) {
+    return msg.parts.filter((p: any) => p.type === 'text').map((p: any) => p.text).join('');
+  }
+  return '';
+}
+
+async function callGitHubModel(model: string, prompt: string): Promise<Response> {
+  const githubToken = process.env.GITHUB_MODELS_TOKEN;
+  if (!githubToken) {
+    throw new Error('GITHUB_MODELS_TOKEN not configured');
+  }
+
+  return fetch(
+    'https://models.inference.ai.azure.com/chat/completions?api-version=2024-08-01-preview',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${githubToken}`,
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT_BASE },
+          { role: 'user', content: prompt },
+        ],
+        temperature: 0.2,
+      }),
+    }
+  );
+}
+
+function createResponse(content: string, status: number = 200): Response {
+  return new Response(
+    JSON.stringify({
+      id: Date.now().toString(),
+      role: 'assistant',
+      content,
+    }),
+    { headers: { 'Content-Type': 'application/json' }, status }
+  );
+}
+
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
+    if (!messages?.length) {
+      return createResponse('Por favor, envía un mensaje válido.', 400);
+    }
+
     const lastUserMessage = messages[messages.length - 1];
-    const lastUserMessageText = lastUserMessage.parts?.map((part: any) => 
-      part.type === 'text' ? part.text : ''
-    ).join('') || lastUserMessage.content;
+    const userText = extractUserMessage(lastUserMessage);
 
-    // 1. Realizar la búsqueda de similitud para obtener contexto
-    const relevantChunks = await findRelevantChunks(lastUserMessageText, 5);
-
-    // 2. Construir el contexto para el prompt
-    const context = relevantChunks.map(chunk => chunk.content).join('\n---\n');
-
-    // 2.1. Si no hay contexto relevante, responder inmediatamente y evitar llamadas al LLM
-    if (!context || context.trim().length === 0) {
-      return new Response(
-        JSON.stringify({
-          id: Date.now().toString(),
-          role: 'assistant',
-          content: 'No tengo suficiente información en mi base de conocimientos para responder a esa pregunta.',
-        }),
-        { headers: { 'Content-Type': 'application/json' }, status: 200 }
-      );
+    if (!userText.trim()) {
+      return createResponse('Por favor, escribe una pregunta válida.', 400);
     }
 
-    // 3. Crear el prompt aumentado
-    const systemPrompt = `Eres un asistente experto. Responde a la pregunta del usuario basándote únicamente en el siguiente contexto. Si la respuesta no se encuentra en el contexto, responde "No tengo suficiente información en mi base de conocimientos para responder a esa pregunta". No inventes información ni respondas con datos fuera del contexto.
+    // Recuperar contexto relevante
+    const relevantChunks = await findRelevantChunks(userText, 5);
+    const context = relevantChunks.map(c => c.content).join('\n---\n');
 
-Contexto:
----
-${context}
----
-
-Pregunta del usuario: ${lastUserMessageText}`;
-
-    // 4. Llamar al LLM usando GitHub Models (OpenAI o4-mini)
-    const githubToken = process.env.GITHUB_MODELS_TOKEN;
-    if (!githubToken) {
-      throw new Error('Falta GITHUB_MODELS_TOKEN en el entorno');
+    // Si no hay contexto, responder inmediatamente
+    if (!context?.trim()) {
+      return createResponse(NO_INFO_MESSAGE);
     }
 
-    async function chatWithModel(model: string) {
-      return await fetch(
-        'https://models.inference.ai.azure.com/chat/completions?api-version=2024-08-01-preview',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${githubToken}`,
-          },
-          body: JSON.stringify({
-            model,
-            messages: [
-              { role: 'system', content: 'Eres un asistente experto y honesto. Usa solo el contexto proporcionado.' },
-              { role: 'user', content: systemPrompt }
-            ],
-            temperature: 0.2,
-          }),
-        }
-      );
+    // Construir prompt aumentado
+    const ragPrompt = `Contexto:\n---\n${context}\n---\n\nPregunta del usuario: ${userText}`;
+
+    // Intentar gpt-4o-mini, fallback a gpt-4o
+    let response = await callGitHubModel('gpt-4o-mini', ragPrompt);
+    if (!response.ok && [404, 400, 422].includes(response.status)) {
+      response = await callGitHubModel('gpt-4o', ragPrompt);
     }
 
-    // Intentar primero con gpt-4o-mini, luego fallback a gpt-4o
-    let response = await chatWithModel('gpt-4o-mini');
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
-      // Fallback solo si es 404/400/422 (modelo no disponible)
-      if ([404, 400, 422].includes(response.status)) {
-        response = await chatWithModel('gpt-4o');
-      } else {
-        throw new Error(`GitHub Models error: ${JSON.stringify({ status: response.status, err: errData })}`);
-      }
-    }
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Google API error: ${JSON.stringify(errorData)}`);
+      throw new Error(`Model error: ${JSON.stringify(errData)}`);
     }
 
     const data = await response.json();
-    const assistantMessage = data.choices?.[0]?.message?.content || 'No se pudo generar una respuesta.';
+    const content = data.choices?.[0]?.message?.content || 'No se pudo generar una respuesta.';
 
-    return new Response(
-      JSON.stringify({
-        id: Date.now().toString(),
-        role: 'assistant',
-        content: assistantMessage,
-      }),
-      { 
-        headers: { 'Content-Type': 'application/json' },
-        status: 200 
-      }
-    );
-
+    return createResponse(content);
+      const errorData = await response.json();
   } catch (error) {
-    console.error("Error en la API de chat con RAG:", error);
-    return new Response(
-      JSON.stringify({ error: "Un error inesperado ha ocurrido." }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    console.error('RAG API error:', error);
+    const message = error instanceof Error ? error.message : 'Unexpected error';
+    return createResponse(`Error: ${message}`, 500);
   }
 }
