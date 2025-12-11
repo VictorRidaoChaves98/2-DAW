@@ -1,0 +1,37 @@
+{
+  "name": "rag-externa-ia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "ingest": "npx -y tsx scripts/ingest.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ai": "^4.1.0",
+    "@google/generative-ai": "^0.21.0",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
+    "langchain": "^1.1.5",
+    "postgres": "^3.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "^15.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.9.3",
+    "drizzle-kit": "^0.28.1",
+    "ts-node": "^10.9.2"
+  }
+}

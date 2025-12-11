@@ -1,0 +1,143 @@
+# 📚 GUÍA COMPLETA: RAG para Asistentes de IA
+
+## ¿Qué es RAG (Retrieval-Augmented Generation)?
+
+RAG es una arquitectura que permite a los modelos de lenguaje (LLMs) acceder a información externa en tiempo real. En lugar de depender solo del conocimiento que aprendieron durante el entrenamiento, pueden recuperar información relevante de una base de datos y utilizarla para responder preguntas de manera más precisa y fundamentada.
+
+### Ventajas de RAG
+
+1. **Conocimiento Actualizado**: El modelo puede acceder a información reciente que no estaba en sus datos de entrenamiento
+2. **Información Privada**: Puedes usar tus propios documentos y datos confidenciales
+3. **Menos Alucinaciones**: Con contexto específico, el modelo inventa menos respuestas falsas
+4. **Transparencia**: Puedes saber de dónde provino cada respuesta
+
+## Arquitectura de un Sistema RAG
+
+### Fase 1: Ingesta (Offline)
+- Cargar documentos
+- Dividirlos en chunks pequeños
+- Generar embeddings (representaciones vectoriales)
+- Almacenarlos en una base de datos vectorial
+
+### Fase 2: Recuperación (Online)
+- Cuando llega una pregunta del usuario, convertirla en embedding
+- Buscar los chunks más similares en la base de datos
+- Pasar esos chunks como contexto al LLM
+- El LLM genera una respuesta basada en el contexto
+
+## Embeddings: El Corazón de RAG
+
+Un embedding es una lista de números (vector) que representa el significado de un texto. Textos con significados similares tienen embeddings parecidos en el espacio vectorial.
+
+- **Dimensionalidad**: Google's text-embedding-004 usa 768 dimensiones
+- **Similitud de Coseno**: Medida usada para encontrar embeddings similares
+- **Invariancia a Sinónimos**: "hola" y "buenos días" tienen embeddings parecidos
+
+## PostgreSQL + pgvector
+
+PostgreSQL no es solo una base de datos relacional. Con la extensión pgvector:
+- Almacena vectores de alta dimensionalidad
+- Realiza búsquedas KNN (K-Nearest Neighbors) eficientemente
+- Usa índices especializados como HNSW para velocidad
+
+## Chunking: Un Arte Crítico
+
+El tamaño y forma en que divides los documentos afecta enormemente la calidad de RAG:
+- Chunks pequeños = mayor precisión pero contexto limitado
+- Chunks grandes = más contexto pero menos precisión
+- Overlap = mantiene coherencia entre límites
+
+## El Flujo Completo
+
+### Input: Pregunta del Usuario
+"¿Cuáles son las características principales del Vercel AI SDK?"
+
+### Step 1: Embeddings de la Pregunta
+La pregunta se convierte en un vector de 768 números.
+
+### Step 2: Búsqueda en BD
+```sql
+SELECT content, similarity 
+FROM chunks 
+WHERE cosine_distance(embedding, query_embedding) < threshold
+ORDER BY similarity DESC 
+LIMIT 3
+```
+
+### Step 3: Construcción del Prompt Aumentado
+```
+Sistema: Eres un experto. Responde basándote SOLO en este contexto.
+
+Contexto:
+[Chunk 1]: "El Vercel AI SDK soporta múltiples proveedores..."
+[Chunk 2]: "Ofrece streaming de primera clase..."
+[Chunk 3]: "Permite generar UI dinámica con componentes React..."
+
+Pregunta: ¿Cuáles son las características principales?
+```
+
+### Step 4: Generación por LLM
+El modelo genera una respuesta bien fundamentada usando solo el contexto.
+
+## Casos de Uso Reales
+
+1. **Soporte al Cliente**: Un bot que responde preguntas sobre tus productos usando su documentación
+2. **Análisis de Documentos**: Resumir y consultar documentos legales o técnicos
+3. **Asistente de Código**: Responder preguntas sobre bases de código internas
+4. **Entrenadore Personal**: Un coach que sabe sobre tus objetivos y progreso personal
+
+## Debugging y Mejoras
+
+### Mejora 1: Aumenta el número de chunks recuperados
+```typescript
+const relevantChunks = await findRelevantChunks(query, 7); // en lugar de 3
+```
+
+### Mejora 2: Ajusta el umbral de similitud
+```typescript
+where(sql`${similarity} > 0.3`) // más leniente (0-1)
+```
+
+### Mejora 3: Experimenta con chunk sizes
+```typescript
+const splitter = new RecursiveCharacterTextSplitter({
+  chunkSize: 1024,  // aumenta para contexto más amplio
+  chunkOverlap: 100,
+});
+```
+
+## Limitaciones Conocidas
+
+1. **Latencia**: Cada query requiere búsqueda vectorial (típicamente 100-500ms)
+2. **Costo**: Usar APIs de embedding cuesta dinero (aunque es barato)
+3. **Calidad de Embeddings**: Limitada por el modelo usado
+4. **Contexto del LLM**: No puedes pasar contexto infinito
+
+## Próximas Mejoras para el Proyecto
+
+1. Añadir soporte para múltiples tipos de documentos (PDF, DOCX, etc.)
+2. Implementar re-ranking para mejorar la calidad de recuperación
+3. Añadir feedback del usuario para mejorar continuamente
+4. Soportar multimodal (texto + imágenes)
+5. Implementar caché para queries frecuentes
+
+## Recursos Recomendados
+
+- LangChain: Framework para trabajar con LLMs
+- Vercel AI SDK: SDK para aplicaciones de IA
+- LlamaIndex: Especializado en RAG
+- OpenAI Embeddings API
+- Google AI Embeddings
+- Anthropic Claude
+
+## Conclusión
+
+RAG es la puerta a asistentes de IA realmente útiles. Ya no estamos limitados al conocimiento paramétrico de los modelos. Podemos construir sistemas inteligentes que acceden a información específica, actual y privada.
+
+Este es solo el comienzo. Los sistemas RAG avanzados combinan múltiples técnicas:
+- Hybrid Search (palabras clave + vectorial)
+- Re-ranking
+- Validación de hechos
+- Múltiples fuentes
+
+¡El futuro de la IA es contextual, actual y confiable!
