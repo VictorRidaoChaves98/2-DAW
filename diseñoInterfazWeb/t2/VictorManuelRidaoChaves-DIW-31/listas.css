@@ -1,0 +1,162 @@
+body {
+    font-family: "Comic Sans MS", "Brush Script MT", cursive;
+    margin: 24px;
+    line-height: 1.6;
+    color: #e8f7ff;
+    background: radial-gradient(120% 120% at 10% 20%, rgba(66, 245, 161, 0.18), transparent 45%),
+        radial-gradient(140% 140% at 80% 0%, rgba(86, 252, 200, 0.2), transparent 50%),
+        linear-gradient(135deg, #0b1f52 0%, #0d2c7a 50%, #0a1840 100%);
+    min-height: 100vh;
+}
+
+h1 {
+    margin-bottom: 8px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+h2 {
+    margin: 20px 0 8px;
+    font-size: 1.1rem;
+    color: #bdfad7;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+ul,
+ol {
+    padding-left: 24px;
+}
+
+.list-asterisk {
+    list-style: none;
+    color: #f6c95f;
+}
+
+.list-asterisk li::marker {
+    content: "* ";
+}
+
+.list-plus {
+    list-style: none;
+    color: #ff9fb2;
+}
+
+.list-plus li::marker {
+    content: "+ ";
+}
+
+.list-arrow {
+    list-style: none;
+    color: #9fd4ff;
+}
+
+.list-arrow li::marker {
+    content: "> ";
+}
+
+.list-hash {
+    list-style: none;
+    color: #c7a7ff;
+}
+
+.list-hash li::marker {
+    content: "# ";
+}
+
+.list-dollar {
+    list-style: none;
+    color: #7fffd4;
+}
+
+.list-dollar li::marker {
+    content: "$ ";
+}
+
+.list-percent {
+    list-style: none;
+    color: #ffd580;
+}
+
+.list-percent li::marker {
+    content: "% ";
+}
+
+.list-amp {
+    list-style: none;
+    color: #ffb3ff;
+}
+
+.list-amp li::marker {
+    content: "& ";
+}
+
+.list-at {
+    list-style: none;
+    color: #a2ff9f;
+}
+
+.list-at li::marker {
+    content: "@ ";
+}
+
+.list-tilde {
+    list-style: none;
+    color: #ff8f70;
+}
+
+.list-tilde li::marker {
+    content: "~ ";
+}
+
+.list-caret {
+    list-style: none;
+    color: #8ce0ff;
+}
+
+.list-caret li::marker {
+    content: "^ ";
+}
+
+.list-dash {
+    list-style: none;
+    color: #f9a1ff;
+}
+
+.list-dash li::marker {
+    content: "- ";
+}
+
+.list-equal {
+    list-style: none;
+    color: #c7ff8f;
+}
+
+.list-equal li::marker {
+    content: "= ";
+}
+
+.list-colon {
+    list-style: none;
+    color: #ffe47f;
+}
+
+.list-colon li::marker {
+    content: ": ";
+}
+
+.list-semi {
+    list-style: none;
+    color: #9ffff0;
+}
+
+.list-semi li::marker {
+    content: "; ";
+}
+
+.list-bang {
+    list-style: none;
+    color: #ffad8c;
+}
+
+.list-bang li::marker {
+    content: "! ";
+}
