@@ -10,7 +10,7 @@ function App() {
   const [success, setSuccess] = useState(null)
 
   // URL de la API
-  const API_URL = 'https://api-tarea-despliegue.onrender.com'
+  const API_URL = 'https://api-tarea-despliegue-vercel-render.onrender.com/api'
 
   // Obtener todas las tareas al cargar el componente
   useEffect(() => {
