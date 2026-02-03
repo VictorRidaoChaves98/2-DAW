@@ -1,0 +1,34 @@
+### API REST - Tareas
+
+# Variables
+@baseUrl = http://localhost:3000
+
+### 1. Obtener todas las tareas
+GET {{baseUrl}}/tareas
+
+### 2. Obtener una tarea específica
+GET {{baseUrl}}/tareas/1
+
+### 3. Crear una nueva tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Estudiar APIs REST",
+  "descripcion": "Aprender cómo crear una API REST con Node.js"
+}
+
+### 4. Crear otra tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Desplegar en Render",
+  "descripcion": "Aprender a desplegar aplicaciones Node.js en Render"
+}
+
+### 5. Eliminar una tarea
+DELETE {{baseUrl}}/tareas/1
+
+### 6. Obtener todas las tareas (después de eliminar)
+GET {{baseUrl}}/tareas
