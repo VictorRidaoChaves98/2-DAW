@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>Gestor de Tareas</h1>
+        <h1>Gestor de Tareas - Connected</h1>
         <p>Conectado a API REST con MongoDB</p>
       </header>
 
