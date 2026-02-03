@@ -1,4 +1,4 @@
-### API REST - Tareas
+### API REST - Tareas con MongoDB
 
 # Variables
 @baseUrl = http://localhost:3000
@@ -6,29 +6,43 @@
 ### 1. Obtener todas las tareas
 GET {{baseUrl}}/tareas
 
-### 2. Obtener una tarea específica
-GET {{baseUrl}}/tareas/1
-
-### 3. Crear una nueva tarea
+### 2. Crear una nueva tarea
 POST {{baseUrl}}/tareas
 Content-Type: application/json
 
 {
-  "titulo": "Comprar pan",
-  "descripcion": "Luego voy al chino por pan"
+  "titulo": "Aprender MongoDB",
+  "descripcion": "Conectar API REST con MongoDB Atlas"
 }
 
-### 4. Crear otra tarea
+### 3. Crear otra tarea
 POST {{baseUrl}}/tareas
 Content-Type: application/json
 
 {
-  "titulo": "Limpiar el cuarto",
-  "descripcion": "Limpiar y organizar el cuarto"
+  "titulo": "Desplegar en Render",
+  "descripcion": "Desplegar la API con MongoDB en Render"
 }
 
-### 5. Eliminar una tarea
-DELETE {{baseUrl}}/tareas/1
+### 4. Crear una tercera tarea
+POST {{baseUrl}}/tareas
+Content-Type: application/json
 
-### 6. Obtener todas las tareas (después de eliminar)
+{
+  "titulo": "Estudiar Despliegue",
+  "descripcion": "Completar la asignatura de Despliegue - 2 DAW"
+}
+
+### 5. Obtener todas las tareas (después de crear)
+GET {{baseUrl}}/tareas
+
+### 6. Obtener una tarea específica por ID
+# Nota: Reemplaza el ID con uno real de la respuesta anterior
+GET {{baseUrl}}/tareas/REEMPLAZA_CON_ID_REAL
+
+### 7. Eliminar una tarea
+# Nota: Reemplaza el ID con uno real de la respuesta anterior
+DELETE {{baseUrl}}/tareas/REEMPLAZA_CON_ID_REAL
+
+### 8. Obtener todas las tareas (después de eliminar)
 GET {{baseUrl}}/tareas
