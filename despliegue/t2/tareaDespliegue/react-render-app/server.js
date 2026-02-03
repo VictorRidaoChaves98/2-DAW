@@ -10,8 +10,19 @@ const PORT = process.env.PORT || 3000;
 // Conectar a MongoDB
 connectDB();
 
-// Middleware
-app.use(cors());
+// Middleware - Configuración de CORS
+const corsOptions = {
+    origin: [
+        'https://api-tarea-despliegue.onrender.com',
+        'http://localhost:5173',
+        'http://localhost:3000'
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ============= RUTAS =============
