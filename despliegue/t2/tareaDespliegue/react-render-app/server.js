@@ -13,7 +13,7 @@ connectDB();
 // Middleware - Configuración de CORS
 const corsOptions = {
     origin: [
-        'https://api-tarea-despliegue.onrender.com',
+        'https://tarea-despliegue-brown.vercel.app',
         'http://localhost:5173',
         'http://localhost:3000'
     ],
