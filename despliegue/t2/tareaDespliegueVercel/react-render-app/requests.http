@@ -14,8 +14,8 @@ POST {{baseUrl}}/tareas
 Content-Type: application/json
 
 {
-  "titulo": "Estudiar APIs REST",
-  "descripcion": "Aprender cómo crear una API REST con Node.js"
+  "titulo": "Comprar pan",
+  "descripcion": "Luego voy al chino por pan"
 }
 
 ### 4. Crear otra tarea
@@ -23,8 +23,8 @@ POST {{baseUrl}}/tareas
 Content-Type: application/json
 
 {
-  "titulo": "Desplegar en Render",
-  "descripcion": "Aprender a desplegar aplicaciones Node.js en Render"
+  "titulo": "Limpiar el cuarto",
+  "descripcion": "Limpiar y organizar el cuarto"
 }
 
 ### 5. Eliminar una tarea
