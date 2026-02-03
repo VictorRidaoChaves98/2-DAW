@@ -14,7 +14,7 @@ API REST sencilla desarrollada con Node.js y Express para gestionar tareas. La A
 
 ## 🌐 Despliegue en Render
 
-**URL de la API:** `https://api-tareas-despliegue.onrender.com` (será asignada tras desplegar)
+**URL de la API:** [https://api-tarea-despliegue.onrender.com](https://api-tarea-despliegue.onrender.com)
 
 ## 🛠️ Tecnologías Utilizadas
 
