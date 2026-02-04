@@ -9,8 +9,8 @@ const audiodiarios = {
       nombre: 'La Gran Cadena',
       numero: 1,
       personaje: 'Andrew Ryan',
-      texto: '¿Hay sangre en las calles?',
-      descripcion: '¿Hay sangre en las calles? Por supuesto. ¿Han elegido algunos destruirse con empalmes descuidados? Innegable. Pero no haré proclamaciones ni dictaré leyes. La Gran Cadena avanza despacio, pero con sabiduría. Es nuestra impaciencia la que invita al Parásito del gran gobierno. Y una vez que lo hayas invitado, nunca dejará de alimentarse del cuerpo de la ciudad .',
+      texto: '¿Hay sangre en las calles? Por supuesto. ¿Han elegido algunos destruirse con empalmes descuidados? Innegable. Pero no haré proclamaciones ni dictaré leyes. La Gran Cadena avanza despacio, pero con sabiduría. Es nuestra impaciencia la que invita al Parásito del gran gobierno. Y una vez que lo hayas invitado, nunca dejará de alimentarse del cuerpo de la ciudad .',
+      descripcion: 'Andrew Ryan da la bienvenida a los nuevos ciudadanos a Rapture, su ciudad bajo el agua.',
       audio: '/audios/AndrewGranCadena.mp3',
       imagen: '/images/AndrewAudio.png'
     },
@@ -56,11 +56,56 @@ const audiodiarios = {
     }
   ],
   'Bioshock 2': [
-    { id: 6, nombre: 'Subject Delta Returns', numero: 1, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 7, nombre: 'The Rapture Family', numero: 2, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 8, nombre: 'Lamb\'s Cause', numero: 3, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 9, nombre: 'The Rumbler', numero: 4, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 10, nombre: 'Reunion', numero: 5, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' }
+    {
+      id: 6,
+      nombre: 'La Big Sister',
+      numero: 1,
+      personaje: 'Gilbert Alexander',
+      texto: 'Una gran evolución.',
+      descripcion: ' Sometimos a nuestra Big Sister a un nuevo régimen de acondicionamiento físico y mental, y la equipamos con equipo de protector modificado de mi diseño. Las niñas la han apodado "Big Sister". Lamentablemente, esto es una solución provisional. Entre los splicers rebeldes y el envejecimiento de las pequeñas, pronto nos quedaremos sin Little Sisters viables. Después de eso... la superficie puede ser nuestra única fuente...',
+      audio: '/audios/AlexanderAudio2.mp3',
+      imagen: '/images/AlexanderAudio2.png'
+    },
+    {
+      id: 7,
+      nombre: 'El Pensador',
+      numero: 2,
+      personaje: 'Charles Milton Porter',
+      texto: 'Una IA peculiar.',
+      descripcion: ' El Sr. Ryan me contrató para construir un ordenador capaz de mantener una ciudad entera funcionando a tiempo completo: la Red de Interpretación de Datos Operacionales de Rapture. La gente la llama "El Pensador". Hemos aprovechado el poder del ADAM incluso en esto, permitiendo que el ordenador central procese datos a la velocidad del pensamiento. En otras palabras, piensa por nosotros, sí... y con la finalización del Procesador de Razonamiento Independiente, finalmente podría pensar... por sí mismo. Si Turing pudiera verme ahora...',
+      audio: '/audios/ChalesAudio2.mp3',
+      imagen: '/images/CharlesAudio2.png'
+    },
+    {
+      id: 8,
+      nombre: 'Un nuevo modelo cognitivo',
+      numero: 3,
+      personaje: 'Sofia Lamb',
+      texto: 'La psiquiatría como profesión.',
+      descripcion: 'Esto... esto lo pone todo en duda. Incluso mientras escribo esto, me cuesta creerlo... La psiquiatría ha sido mi estudio continuo... para cartografiar la conciencia en todos sus estratos. Pero la inteligencia no requiere introspección... el hijo de Ryan fue más eficaz que todos sus rivales conscientes de sí mismos. Vivió sin cuestionamientos. Podría acabar con el yo... y salvar el mundo.',
+      audio: '/audios/LambAudio2.mp3',
+      imagen: '/images/LambAudio2.png'
+    },
+    {
+      id: 9,
+      nombre: 'El potencial del pensador',
+      numero: 4,
+      personaje: 'Reed Wahl',
+      texto: 'Porter está loco.',
+      descripcion: ' Porter y yo somos socios, pero... está desperdiciando esa máquina. En mis horas libres, la he estado usando para predecir los resultados de los partidos de béisbol, y es increíblemente precisa. ¿Aplicar esas ecuaciones a los mercados de Rapture? Esta cosa es el Santo Grial de la rentabilidad. Pero Porter... lo he oído alimentándola con grabaciones de su difunta esposa. El tonto que quiere convertir al Pensador en una "persona". No podría imaginar un destino más triste para una máquina tan perfecta.',
+      audio: '/audios/ReedAudio2.mp3',
+      imagen: '/images/ReedAudio2.png'
+    },
+    {
+      id: 10,
+      nombre: '¡Detonad el túnel!',
+      numero: 5,
+      personaje: 'Reed Wahl',
+      texto: 'Ya viene...',
+      descripcion: 'La ironía de mi ecuación predictiva… es que a veces requiere fe ciega. Veo cómo los elementos individuales chocan entre sí y la urgencia de lo que debo hacer para cumplir mi parte en el plan es clara... pero no siempre veo exactamente POR QUÉ. Un Serie Alfa se dirige a la Guarida de Minerva, el Sujeto Sigma... y ​​la ecuación dice que si llega al Núcleo de la Computadora, ¡catástrofe! No sé por qué... todavía, pero sé lo que debo hacer... El Sujeto Sigma se acerca a la Guarida de Minerva. No debe llegar al Pensador . ¡DETONAD EL TÚNEL!.',
+      audio: '/audios/ReedAudioTunel2.mp3',
+      imagen: '/images/ReedAudio2.png'
+    }
   ],
   'Bioshock Infinite': [
     { id: 11, nombre: 'Welcome to Columbia', numero: 1, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
@@ -308,8 +353,11 @@ function App() {
                     </div>
 
                     <div className="texto-completo">
-                      <h4>Transcripción</h4>
-                      <p>{audiodiarioSeleccionado.texto || audiodiarioSeleccionado.descripcion || 'Transcripción pendiente de completar.'}</p>
+                      <h4>Texto Original</h4>
+                      <p>{audiodiarioSeleccionado.texto || 'Texto pendiente de completar.'}</p>
+                      
+                      <h4>Traducción/Explicación</h4>
+                      <p>{audiodiarioSeleccionado.descripcion || 'Traducción pendiente de completar.'}</p>
                     </div>
 
                     <button
@@ -385,8 +433,11 @@ function App() {
                         </div>
 
                         <div className="texto-completo">
-                          <h4>Transcripción</h4>
-                          <p>{audioCompleto?.texto || audioCompleto?.descripcion || favoritoActual.descripcion || 'Transcripción pendiente de completar.'}</p>
+                          <h4>Texto Original</h4>
+                          <p>{audioCompleto?.texto || 'Texto pendiente de completar.'}</p>
+                          
+                          <h4>Traducción/Explicación</h4>
+                          <p>{audioCompleto?.descripcion || favoritoActual.descripcion || 'Traducción pendiente de completar.'}</p>
                         </div>
 
                         <button
