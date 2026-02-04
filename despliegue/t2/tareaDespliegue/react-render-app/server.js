@@ -12,11 +12,14 @@ connectDB();
 
 // Middleware - Configuración de CORS
 const corsOptions = {
-    origin: [
-        'https://tarea-despliegue-brown.vercel.app',
-        'http://localhost:5173',
-        'http://localhost:3000'
-    ],
+    origin: function(origin, callback) {
+        // Permitir localhost en desarrollo y cualquier dominio de Vercel
+        if (!origin || origin.includes('localhost') || origin.includes('vercel.app')) {
+            callback(null, true)
+        } else {
+            callback(new Error('CORS no permitido'), false)
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
