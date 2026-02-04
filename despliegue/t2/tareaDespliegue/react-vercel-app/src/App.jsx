@@ -9,8 +9,8 @@ const audiodiarios = {
       nombre: 'La Gran Cadena',
       numero: 1,
       personaje: 'Andrew Ryan',
-      texto: '¿Hay sangre en las calles? Por supuesto. ¿Han elegido algunos destruirse con empalmes descuidados? Innegable. Pero no haré proclamaciones ni dictaré leyes. La Gran Cadena avanza despacio, pero con sabiduría. Es nuestra impaciencia la que invita al Parásito del gran gobierno. Y una vez que lo hayas invitado, nunca dejará de alimentarse del cuerpo de la ciudad .',
-      descripcion: 'Andrew Ryan da la bienvenida a los nuevos ciudadanos a Rapture, su ciudad bajo el agua.',
+      texto: 'Sangre en las calles.',
+      descripcion: '¿Hay sangre en las calles? Por supuesto. ¿Han elegido algunos destruirse con empalmes descuidados? Innegable. Pero no haré proclamaciones ni dictaré leyes. La Gran Cadena avanza despacio, pero con sabiduría. Es nuestra impaciencia la que invita al Parásito del gran gobierno. Y una vez que lo hayas invitado, nunca dejará de alimentarse del cuerpo de la ciudad .',
       audio: '/audios/AndrewGranCadena.mp3',
       imagen: '/images/AndrewAudio.png'
     },
@@ -108,11 +108,56 @@ const audiodiarios = {
     }
   ],
   'Bioshock Infinite': [
-    { id: 11, nombre: 'Welcome to Columbia', numero: 1, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 12, nombre: 'The Songbird', numero: 2, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 13, nombre: 'A New Frontier', numero: 3, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 14, nombre: 'Infinite Possibilities', numero: 4, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
-    { id: 15, nombre: 'The Choice', numero: 5, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' }
+    {
+      id: 11,
+      nombre: 'Disculpa',
+      numero: 1,
+      personaje: 'Booker DeWitt',
+      texto: 'Una guerra sin vencedores',
+      descripcion: '*Tose* Fitzroy... si ganas esta guerra estúpida, envías esto a Nueva York. *Tose mucho* No van a conseguir a la chica . Quienquiera que sean... *Hace una mueca* Quizás hice lo correcto contigo y con Vox , pero al final... eso no soluciona nada. *Jadeando* Anna... Anna... Lo siento...',
+      audio: '/audios/BookerAudio3.mp3',
+      imagen: '/images/BookerAudio3.png'
+    },
+    {
+      id: 12,
+      nombre: 'Todos a la vez',
+      numero: 2,
+      personaje: 'Zachary Hale Comstock',
+      texto: 'Un nuevo hombre',
+      descripcion: 'Un hombre entra en las aguas del bautismo. Un hombre diferente sale, nacido de nuevo. Pero, ¿quién es ese hombre que yace sumergido? Quizás ese nadador sea a la vez pecador y santo, hasta que se revele a los ojos del hombre',
+      audio: '/audios/ComstockAudio3.mp3',
+      imagen: '/images/ComstockAudio3.png'
+    },
+    {
+      id: 13,
+      nombre: 'Fin de la historia',
+      numero: 3,
+      personaje: 'Elizabeth',
+      texto: 'Puedo ver todas las puertas... y lo que hay detrás de ellas.',
+      descripcion: 'Mañana me soltarán, porque todo esto... tiene que terminar. Pero incluso si destruyo el Sifón... ¿seré lo suficientemente fuerte para ver todas las puertas y abrir la que elija? Y si lo traigo aquí, ¿quién dice que será rival para los monstruos que he creado?',
+      audio: '/audios/ElizabethAudio3.mp3',
+      imagen: '/images/ElizabethAudio3.png'
+    },
+    {
+      id: 14,
+      nombre: 'Ama al pecador',
+      numero: 4,
+      personaje: 'Lady Comstock',
+      texto: 'Ama al profeta',
+      descripcion: 'Ama al Profeta, porque ama al pecador. Ama al pecador, porque él es tú. Sin el pecador, ¿qué necesidad hay de un redentor? Sin pecado, ¿qué gracia tiene el perdón?',
+      audio: '/audios/LadyAudio3.mp3',
+      imagen: '/images/LadyAudio3.png'
+    },
+    {
+      id: 15,
+      nombre: 'Viendo el infinito',
+      numero: 5,
+      personaje: 'Rosalind Lutece',
+      texto: 'Un futuro prometedor',
+      descripcion: 'De niña, soñé que estaba en una habitación mirando a una chica que era y no era yo, y que esta miraba a otra chica, que también era y no era yo. Mi madre lo interpretó como una pesadilla. Yo lo vi como el comienzo de una carrera en física.',
+      audio: '/audios/LuteceAudio3.mp3',
+      imagen: '/images/LuteceAudio3.png'
+    }
   ]
 }
 
@@ -208,7 +253,7 @@ function App() {
 
       if (data.success) {
         setFavoritos([...favoritos, data.data])
-        setSuccess('✨ Audiodiario añadido a favoritos')
+        setSuccess('Añadido a favoritos')
         setTimeout(() => setSuccess(null), 3000)
       } else {
         setError(data.mensaje || 'Error al añadir a favoritos')
@@ -234,13 +279,13 @@ function App() {
 
       if (data.success) {
         setFavoritos(favoritos.filter(f => f.id !== id))
-        setSuccess('🗑️ Audiodiario eliminado de favoritos')
+        setSuccess('Eliminado de favoritos')
         setTimeout(() => setSuccess(null), 3000)
       } else {
         setError(data.mensaje || 'Error al eliminar')
       }
     } catch (err) {
-      setError('Error de conexión con el servidor')
+      setError('Error de conexión con el server')
       console.error(err)
     } finally {
       setLoading(false)
@@ -255,7 +300,7 @@ function App() {
     <div className="app-container">
       <div className="contenido">
         <header className="header">
-          <h1 className="titulo">🎙️ AUDIODIARIOS BIOSHOCK 🎙️</h1>
+          <h1 className="titulo">🎙️ AUDIOLOGS SAGA BIOSHOCK 🎙️</h1>
           <p className="subtitulo">Colecciona los secretos de Rapture y Columbia</p>
         </header>
 
@@ -369,7 +414,7 @@ function App() {
                     </button>
                   </>
                 ) : (
-                  <p className="sin-audio">Selecciona un audiodiario para ver su detalle</p>
+                  <p className="sin-audio">Selecciona un audiolog para verlo en detalle</p>
                 )}
               </div>
             </div>
