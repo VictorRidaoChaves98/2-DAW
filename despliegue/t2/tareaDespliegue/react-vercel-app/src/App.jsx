@@ -27,9 +27,9 @@ const audiodiarios = {
 }
 
 const imagenes = {
-  'Bioshock 1': '/images/bioshock1.jpg',
-  'Bioshock 2': '/images/bioshock2.jpg',
-  'Bioshock Infinite': '/images/bioshock-infinite.jpg'
+  'Bioshock 1': '/images/Bioshock1.png',
+  'Bioshock 2': '/images/Bioshock2.png',
+  'Bioshock Infinite': '/images/BioshockInfinite.png'
 }
 
 function App() {
