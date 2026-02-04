@@ -50,17 +50,28 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(`${API_URL}/favoritos`)
-      const data = await response.json()
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 15000)
       
-      if (data.success) {
-        setFavoritos(data.data)
-      } else {
-        setError('Error al obtener favoritos')
+      const response = await fetch(`${API_URL}/favoritos`, {
+        signal: controller.signal,
+        headers: { 'Content-Type': 'application/json' }
+      })
+      clearTimeout(timeoutId)
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
       }
+      
+      const data = await response.json()
+      setFavoritos(data.data || data || [])
     } catch (err) {
-      setError('Error de conexión con el servidor')
-      console.error(err)
+      console.error('Error de conexión:', err)
+      if (err.name === 'AbortError') {
+        setError('⏱️ Timeout: El servidor tarda demasiado (>15s)')
+      } else {
+        setError('❌ No se puede conectar al servidor')
+      }
     } finally {
       setLoading(false)
     }
