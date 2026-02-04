@@ -1,109 +1,109 @@
 {
-  "audiodiarios": [
-    {
-      "id": 1,
-      "juego": "Bioshock 1",
-      "nombre": "Welcome to Rapture",
-      "numero": 1,
-      "descripcion": "Andrew Ryan da la bienvenida a los nuevos ciudadanos a Rapture, su ciudad bajo el agua."
-    },
-    {
-      "id": 2,
-      "juego": "Bioshock 1",
-      "nombre": "The Tonic of Life",
-      "numero": 2,
-      "descripcion": "Sofia Lamb habla sobre las promesas de ADAM y su efecto en la sociedad de Rapture."
-    },
-    {
-      "id": 3,
-      "juego": "Bioshock 1",
-      "nombre": "Rapture Harvest",
-      "numero": 3,
-      "descripcion": "Atlas reflexiona sobre el destino de Rapture y sus ciudadanos."
-    },
-    {
-      "id": 4,
-      "juego": "Bioshock 1",
-      "nombre": "The Little Ones",
-      "numero": 4,
-      "descripcion": "Un diario sobre las Little Sisters y su importancia en la economía de ADAM de Rapture."
-    },
-    {
-      "id": 5,
-      "juego": "Bioshock 1",
-      "nombre": "Artists and Dreamers",
-      "numero": 5,
-      "descripcion": "Sander Cohen detalla su visión artística y los cambios en Rapture."
-    },
-    {
-      "id": 6,
-      "juego": "Bioshock 2",
-      "nombre": "Subject Delta Returns",
-      "numero": 1,
-      "descripcion": "Subject Delta despierta 8 años después en una Rapture devastada."
-    },
-    {
-      "id": 7,
-      "juego": "Bioshock 2",
-      "nombre": "The Rapture Family",
-      "numero": 2,
-      "descripcion": "Eleanor reflexiona sobre su relación con Subject Delta y su madre."
-    },
-    {
-      "id": 8,
-      "juego": "Bioshock 2",
-      "nombre": "Lamb's Cause",
-      "numero": 3,
-      "descripcion": "Sofia Lamb continúa su plan para Eleanor como la próxima líder de Rapture."
-    },
-    {
-      "id": 9,
-      "juego": "Bioshock 2",
-      "nombre": "The Rumbler",
-      "numero": 4,
-      "descripcion": "Un Big Daddy cuenta su experiencia protegiendo a su Little Sister."
-    },
-    {
-      "id": 10,
-      "juego": "Bioshock 2",
-      "nombre": "Reunion",
-      "numero": 5,
-      "descripcion": "Subject Delta y Eleanor se reúnen en medio del caos de Rapture."
-    },
-    {
-      "id": 11,
-      "juego": "Bioshock Infinite",
-      "nombre": "Welcome to Columbia",
-      "numero": 1,
-      "descripcion": "Comstock da la bienvenida a los nuevos residentes a su ciudad flotante en el cielo."
-    },
-    {
-      "id": 12,
-      "juego": "Bioshock Infinite",
-      "nombre": "The Songbird",
-      "numero": 2,
-      "descripcion": "Elizabeth cuenta sobre su relación con el Songbird, su guardián."
-    },
-    {
-      "id": 13,
-      "juego": "Bioshock Infinite",
-      "nombre": "A New Frontier",
-      "numero": 3,
-      "descripcion": "Los ideales fundadores de Columbia se ven cuestionados por la realidad."
-    },
-    {
-      "id": 14,
-      "juego": "Bioshock Infinite",
-      "nombre": "Infinite Possibilities",
-      "numero": 4,
-      "descripcion": "Lutece reflexiona sobre los múltiples universos y realidades paralelas."
-    },
-    {
-      "id": 15,
-      "juego": "Bioshock Infinite",
-      "nombre": "The Choice",
-      "numero": 5,
-      "descripcion": "Los últimos secretos de Columbia y su verdadero propósito se revelan."
-    }
-  ]
+    "audiodiarios": [
+        {
+            "id": 1,
+            "juego": "Bioshock 1",
+            "nombre": "Welcome to Rapture",
+            "numero": 1,
+            "descripcion": "Andrew Ryan da la bienvenida a los nuevos ciudadanos a Rapture, su ciudad bajo el agua."
+        },
+        {
+            "id": 2,
+            "juego": "Bioshock 1",
+            "nombre": "The Tonic of Life",
+            "numero": 2,
+            "descripcion": "Sofia Lamb habla sobre las promesas de ADAM y su efecto en la sociedad de Rapture."
+        },
+        {
+            "id": 3,
+            "juego": "Bioshock 1",
+            "nombre": "Rapture Harvest",
+            "numero": 3,
+            "descripcion": "Atlas reflexiona sobre el destino de Rapture y sus ciudadanos."
+        },
+        {
+            "id": 4,
+            "juego": "Bioshock 1",
+            "nombre": "The Little Ones",
+            "numero": 4,
+            "descripcion": "Un diario sobre las Little Sisters y su importancia en la economía de ADAM de Rapture."
+        },
+        {
+            "id": 5,
+            "juego": "Bioshock 1",
+            "nombre": "Artists and Dreamers",
+            "numero": 5,
+            "descripcion": "Sander Cohen detalla su visión artística y los cambios en Rapture."
+        },
+        {
+            "id": 6,
+            "juego": "Bioshock 2",
+            "nombre": "Subject Delta Returns",
+            "numero": 1,
+            "descripcion": "Subject Delta despierta 8 años después en una Rapture devastada."
+        },
+        {
+            "id": 7,
+            "juego": "Bioshock 2",
+            "nombre": "The Rapture Family",
+            "numero": 2,
+            "descripcion": "Eleanor reflexiona sobre su relación con Subject Delta y su madre."
+        },
+        {
+            "id": 8,
+            "juego": "Bioshock 2",
+            "nombre": "Lamb's Cause",
+            "numero": 3,
+            "descripcion": "Sofia Lamb continúa su plan para Eleanor como la próxima líder de Rapture."
+        },
+        {
+            "id": 9,
+            "juego": "Bioshock 2",
+            "nombre": "The Rumbler",
+            "numero": 4,
+            "descripcion": "Un Big Daddy cuenta su experiencia protegiendo a su Little Sister."
+        },
+        {
+            "id": 10,
+            "juego": "Bioshock 2",
+            "nombre": "Reunion",
+            "numero": 5,
+            "descripcion": "Subject Delta y Eleanor se reúnen en medio del caos de Rapture."
+        },
+        {
+            "id": 11,
+            "juego": "Bioshock Infinite",
+            "nombre": "Welcome to Columbia",
+            "numero": 1,
+            "descripcion": "Comstock da la bienvenida a los nuevos residentes a su ciudad flotante en el cielo."
+        },
+        {
+            "id": 12,
+            "juego": "Bioshock Infinite",
+            "nombre": "The Songbird",
+            "numero": 2,
+            "descripcion": "Elizabeth cuenta sobre su relación con el Songbird, su guardián."
+        },
+        {
+            "id": 13,
+            "juego": "Bioshock Infinite",
+            "nombre": "A New Frontier",
+            "numero": 3,
+            "descripcion": "Los ideales fundadores de Columbia se ven cuestionados por la realidad."
+        },
+        {
+            "id": 14,
+            "juego": "Bioshock Infinite",
+            "nombre": "Infinite Possibilities",
+            "numero": 4,
+            "descripcion": "Lutece reflexiona sobre los múltiples universos y realidades paralelas."
+        },
+        {
+            "id": 15,
+            "juego": "Bioshock Infinite",
+            "nombre": "The Choice",
+            "numero": 5,
+            "descripcion": "Los últimos secretos de Columbia y su verdadero propósito se revelan."
+        }
+    ]
 }
