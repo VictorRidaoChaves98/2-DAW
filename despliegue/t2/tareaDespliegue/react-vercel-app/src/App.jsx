@@ -4,25 +4,70 @@ import './App.css'
 // Datos de audiodiarios
 const audiodiarios = {
   'Bioshock 1': [
-    { id: 1, nombre: 'Welcome to Rapture', numero: 1, descripcion: 'Andrew Ryan da la bienvenida a los nuevos ciudadanos a Rapture, su ciudad bajo el agua.' },
-    { id: 2, nombre: 'The Tonic of Life', numero: 2, descripcion: 'Sofia Lamb habla sobre las promesas de ADAM y su efecto en la sociedad de Rapture.' },
-    { id: 3, nombre: 'Rapture Harvest', numero: 3, descripcion: 'Atlas reflexiona sobre el destino de Rapture y sus ciudadanos.' },
-    { id: 4, nombre: 'The Little Ones', numero: 4, descripcion: 'Un diario sobre las Little Sisters y su importancia en la economía de ADAM de Rapture.' },
-    { id: 5, nombre: 'Artists and Dreamers', numero: 5, descripcion: 'Sander Cohen detalla su visión artística y los cambios en Rapture.' }
+    {
+      id: 1,
+      nombre: 'La Gran Cadena',
+      numero: 1,
+      personaje: 'Andrew Ryan',
+      texto: 'Transcripción pendiente de completar.',
+      descripcion: 'Transcripción pendiente de completar.',
+      audio: '/audios/AndrewGranCadena.mp3',
+      imagen: '/images/AndrewAudio.png'
+    },
+    {
+      id: 2,
+      nombre: 'Parásitos',
+      numero: 2,
+      personaje: 'Andrew Ryan',
+      texto: 'Transcripción pendiente de completar.',
+      descripcion: 'Transcripción pendiente de completar.',
+      audio: '/audios/AndrewParasitos.mp3',
+      imagen: '/images/AndrewAudio.png'
+    },
+    {
+      id: 3,
+      nombre: 'Año Nuevo',
+      numero: 3,
+      personaje: 'Diane McClintock',
+      texto: 'Transcripción pendiente de completar.',
+      descripcion: 'Transcripción pendiente de completar.',
+      audio: '/audios/DianeAñoNuevo.mp3',
+      imagen: '/images/DianeAudio.png'
+    },
+    {
+      id: 4,
+      nombre: 'Cambios',
+      numero: 4,
+      personaje: 'Dr. Steinman',
+      texto: 'Transcripción pendiente de completar.',
+      descripcion: 'Transcripción pendiente de completar.',
+      audio: '/audios/SteinmannCambios.mp3',
+      imagen: '/images/SteinmannAudio.png'
+    },
+    {
+      id: 5,
+      nombre: 'ADAM',
+      numero: 5,
+      personaje: 'Brigid Tenenbaum',
+      texto: 'Transcripción pendiente de completar.',
+      descripcion: 'Transcripción pendiente de completar.',
+      audio: '/audios/TenenbaumAdam.mp3',
+      imagen: '/images/tenenbamumAudio.png'
+    }
   ],
   'Bioshock 2': [
-    { id: 6, nombre: 'Subject Delta Returns', numero: 1, descripcion: 'Subject Delta despierta 8 años después en una Rapture devastada.' },
-    { id: 7, nombre: 'The Rapture Family', numero: 2, descripcion: 'Eleanor reflexiona sobre su relación con Subject Delta y su madre.' },
-    { id: 8, nombre: 'Lamb\'s Cause', numero: 3, descripcion: 'Sofia Lamb continúa su plan para Eleanor como la próxima líder de Rapture.' },
-    { id: 9, nombre: 'The Rumbler', numero: 4, descripcion: 'Un Big Daddy cuenta su experiencia protegiendo a su Little Sister.' },
-    { id: 10, nombre: 'Reunion', numero: 5, descripcion: 'Subject Delta y Eleanor se reúnen en medio del caos de Rapture.' }
+    { id: 6, nombre: 'Subject Delta Returns', numero: 1, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 7, nombre: 'The Rapture Family', numero: 2, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 8, nombre: 'Lamb\'s Cause', numero: 3, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 9, nombre: 'The Rumbler', numero: 4, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 10, nombre: 'Reunion', numero: 5, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' }
   ],
   'Bioshock Infinite': [
-    { id: 11, nombre: 'Welcome to Columbia', numero: 1, descripcion: 'Comstock da la bienvenida a los nuevos residentes a su ciudad flotante en el cielo.' },
-    { id: 12, nombre: 'The Songbird', numero: 2, descripcion: 'Elizabeth cuenta sobre su relación con el Songbird, su guardián.' },
-    { id: 13, nombre: 'A New Frontier', numero: 3, descripcion: 'Los ideales fundadores de Columbia se ven cuestionados por la realidad.' },
-    { id: 14, nombre: 'Infinite Possibilities', numero: 4, descripcion: 'Lutece reflexiona sobre los múltiples universos y realidades paralelas.' },
-    { id: 15, nombre: 'The Choice', numero: 5, descripcion: 'Los últimos secretos de Columbia y su verdadero propósito se revelan.' }
+    { id: 11, nombre: 'Welcome to Columbia', numero: 1, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 12, nombre: 'The Songbird', numero: 2, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 13, nombre: 'A New Frontier', numero: 3, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 14, nombre: 'Infinite Possibilities', numero: 4, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' },
+    { id: 15, nombre: 'The Choice', numero: 5, personaje: '', texto: 'Transcripción pendiente de completar.', descripcion: 'Transcripción pendiente de completar.', audio: '', imagen: '' }
   ]
 }
 
@@ -39,12 +84,18 @@ function App() {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [vistaActual, setVistaActual] = useState('audiodiarios')
+  const [audiodiarioSeleccionadoId, setAudiodiarioSeleccionadoId] = useState(audiodiarios['Bioshock 1'][0]?.id ?? null)
 
   const API_URL = 'https://api-tarea-despliegue-vercel-render.onrender.com'
 
   useEffect(() => {
     obtenerFavoritos()
   }, [])
+
+  useEffect(() => {
+    const primero = audiodiarios[juego][0]
+    setAudiodiarioSeleccionadoId(primero ? primero.id : null)
+  }, [juego])
 
   const obtenerFavoritos = async () => {
     setLoading(true)
@@ -77,8 +128,12 @@ function App() {
     }
   }
 
+  const esFavorito = (audiodiario) => {
+    return favoritos.some(f => f.juego === juego && f.numero === audiodiario.numero)
+  }
+
   const addFavorito = async (audiodiario) => {
-    if (favoritos.some(f => f.id === audiodiario.id)) {
+    if (esFavorito(audiodiario)) {
       setError('Este audiodiario ya está en favoritos')
       setTimeout(() => setError(null), 3000)
       return
@@ -98,7 +153,7 @@ function App() {
           juego: juego,
           nombre: audiodiario.nombre,
           numero: audiodiario.numero,
-          descripcion: audiodiario.descripcion
+          descripcion: audiodiario.texto || audiodiario.descripcion
         })
       })
 
@@ -147,6 +202,7 @@ function App() {
 
   const audiodiarioActuales = audiodiarios[juego]
   const favoritosJuegoActual = favoritos.filter(f => f.juego === juego)
+  const audiodiarioSeleccionado = audiodiarioActuales.find(audio => audio.id === audiodiarioSeleccionadoId)
 
   return (
     <div className="app-container">
@@ -210,22 +266,62 @@ function App() {
 
             {loading && <p className="cargando">⏳ Cargando...</p>}
 
-            <div className="lista-audiodiarios">
-              {audiodiarioActuales.map((audio) => (
-                <div key={audio.id} className="audiodiario-card">
-                  <div className="audiodiario-header">
-                    <h3>#{audio.numero} - {audio.nombre}</h3>
-                  </div>
-                  <p className="descripcion">{audio.descripcion}</p>
+            <div className="audiodiarios-layout">
+              <div className="lista-nombres">
+                {audiodiarioActuales.map((audio) => (
                   <button
-                    className="boton-favorito"
-                    onClick={() => addFavorito(audio)}
-                    disabled={loading || favoritos.some(f => f.id === audio.id)}
+                    key={audio.id}
+                    className={`item-nombre ${audio.id === audiodiarioSeleccionadoId ? 'activo' : ''}`}
+                    onClick={() => setAudiodiarioSeleccionadoId(audio.id)}
                   >
-                    {favoritos.some(f => f.id === audio.id) ? '⭐ EN FAVORITOS' : '☆ AÑADIR A FAVORITOS'}
+                    #{audio.numero} - {audio.nombre}
                   </button>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              <div className="detalle-audio">
+                {audiodiarioSeleccionado ? (
+                  <>
+                    <h3 className="detalle-titulo">#{audiodiarioSeleccionado.numero} - {audiodiarioSeleccionado.nombre}</h3>
+                    <p className="detalle-personaje">Voz: {audiodiarioSeleccionado.personaje || 'Personaje pendiente'}</p>
+
+                    <div className="detalle-media">
+                      {audiodiarioSeleccionado.imagen ? (
+                        <img
+                          src={audiodiarioSeleccionado.imagen}
+                          alt={audiodiarioSeleccionado.personaje || 'Personaje'}
+                          className="imagen-personaje"
+                        />
+                      ) : (
+                        <div className="imagen-placeholder">Sin imagen</div>
+                      )}
+
+                      <div className="audio-box">
+                        {audiodiarioSeleccionado.audio ? (
+                          <audio controls src={audiodiarioSeleccionado.audio} />
+                        ) : (
+                          <p className="sin-audio">Audio pendiente</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="texto-completo">
+                      <h4>Transcripción</h4>
+                      <p>{audiodiarioSeleccionado.texto || audiodiarioSeleccionado.descripcion || 'Transcripción pendiente de completar.'}</p>
+                    </div>
+
+                    <button
+                      className="boton-favorito"
+                      onClick={() => addFavorito(audiodiarioSeleccionado)}
+                      disabled={loading || esFavorito(audiodiarioSeleccionado)}
+                    >
+                      {esFavorito(audiodiarioSeleccionado) ? '⭐ EN FAVORITOS' : '☆ AÑADIR A FAVORITOS'}
+                    </button>
+                  </>
+                ) : (
+                  <p className="sin-audio">Selecciona un audiodiario para ver su detalle</p>
+                )}
+              </div>
             </div>
           </div>
         )}
