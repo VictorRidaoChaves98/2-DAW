@@ -25,13 +25,20 @@ body {
   background-color: var(--light);
 }
 
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
 /* Container principal */
 .app-container {
   background-image: url('/images/Fondo.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
