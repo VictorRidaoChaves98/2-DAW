@@ -9,8 +9,8 @@ const audiodiarios = {
       nombre: 'La Gran Cadena',
       numero: 1,
       personaje: 'Andrew Ryan',
-      texto: 'Transcripción pendiente de completar.',
-      descripcion: 'Transcripción pendiente de completar.',
+      texto: '¿Hay sangre en las calles?',
+      descripcion: '¿Hay sangre en las calles? Por supuesto. ¿Han elegido algunos destruirse con empalmes descuidados? Innegable. Pero no haré proclamaciones ni dictaré leyes. La Gran Cadena avanza despacio, pero con sabiduría. Es nuestra impaciencia la que invita al Parásito del gran gobierno. Y una vez que lo hayas invitado, nunca dejará de alimentarse del cuerpo de la ciudad .',
       audio: '/audios/AndrewGranCadena.mp3',
       imagen: '/images/AndrewAudio.png'
     },
@@ -19,8 +19,8 @@ const audiodiarios = {
       nombre: 'Parásitos',
       numero: 2,
       personaje: 'Andrew Ryan',
-      texto: 'Transcripción pendiente de completar.',
-      descripcion: 'Transcripción pendiente de completar.',
+      texto: 'Expectativas de los parásitos.',
+      descripcion: 'A primera vista, el Parásito espera que el médico lo cure gratis y que el granjero lo alimente por caridad. Qué poco se diferencian del pervertido que ronda las calles en busca de una víctima para su grotesca diversión.',
       audio: '/audios/AndrewParasitos.mp3',
       imagen: '/images/AndrewAudio.png'
     },
@@ -29,8 +29,8 @@ const audiodiarios = {
       nombre: 'Año Nuevo',
       numero: 3,
       personaje: 'Diane McClintock',
-      texto: 'Transcripción pendiente de completar.',
-      descripcion: 'Transcripción pendiente de completar.',
+      texto: 'Nochevieja sola... de nuevo.',
+      descripcion: 'Otro Año Nuevo , otra noche sola. Yo salí, y tú te quedaste en Hephaestus , trabajando. Imagina mi sorpresa. Supongo que tomaré otra copa... Brindemos por Diane McClintock, la chica más tonta de Rapture . Tan tonta como para enamorarse de Andrew Ryan , tan tonta como para... (Sonidos de explosiones y gritos) ¿Qué… qué pasó…? Estoy sangrando… Oh, Dios… ¿Qué está pasando…?',
       audio: '/audios/DianeAñoNuevo.mp3',
       imagen: '/images/DianeAudio.png'
     },
@@ -39,8 +39,8 @@ const audiodiarios = {
       nombre: 'Cambios',
       numero: 4,
       personaje: 'Dr. Steinman',
-      texto: 'Transcripción pendiente de completar.',
-      descripcion: 'Transcripción pendiente de completar.',
+      texto: 'El ADAM brinda cambios.',
+      descripcion: ' Ryan y ADAM , ADAM y Ryan… Todos esos años de estudio, ¿y fui realmente cirujano antes de conocerlos? Cómo desgranábamos con nuestros bisturíes y nuestra moral de juguete. Sí, podíamos cortar un forúnculo por aquí y afeitar un pico por allá, pero… ¿podríamos realmente cambiar algo? No. Pero ADAM nos da los medios para hacerlo. Y Ryan nos libera de la falsa ética que nos frenaba. Cambia tu apariencia, cambia tu sexo, cambia tu raza. Es tuyo para cambiar, de nadie más.',
       audio: '/audios/SteinmannCambios.mp3',
       imagen: '/images/SteinmannAudio.png'
     },
@@ -49,8 +49,8 @@ const audiodiarios = {
       nombre: 'ADAM',
       numero: 5,
       personaje: 'Brigid Tenenbaum',
-      texto: 'Transcripción pendiente de completar.',
-      descripcion: 'Transcripción pendiente de completar.',
+      texto: 'Producción masiva de ADAM.',
+      descripcion: 'El procedimiento de aumento es un éxito. Las babosas por sí solas no podían proporcionar suficiente ADAM para un trabajo serio. Pero combinadas con el huésped… ahora tenemos algo. La babosa se incrusta en el revestimiento del estómago del huésped y, después de que este se alimenta, inducimos la regurgitación, y entonces obtenemos una producción de ADAM utilizable de veinte a treinta veces. El problema ahora es la escasez de huéspedes. Fontaine dice: «Paciencia, Tenenbaum. Pronto abrirá el primer hogar para Hermanitas , y ese problema estará resuelto…».',
       audio: '/audios/TenenbaumAdam.mp3',
       imagen: '/images/tenenbamumAudio.png'
     }
@@ -85,6 +85,7 @@ function App() {
   const [success, setSuccess] = useState(null)
   const [vistaActual, setVistaActual] = useState('audiodiarios')
   const [audiodiarioSeleccionadoId, setAudiodiarioSeleccionadoId] = useState(audiodiarios['Bioshock 1'][0]?.id ?? null)
+  const [favoritoSeleccionadoId, setFavoritoSeleccionadoId] = useState(null)
 
   const API_URL = 'https://api-tarea-despliegue-vercel-render.onrender.com'
 
@@ -95,6 +96,7 @@ function App() {
   useEffect(() => {
     const primero = audiodiarios[juego][0]
     setAudiodiarioSeleccionadoId(primero ? primero.id : null)
+    setFavoritoSeleccionadoId(null)
   }, [juego])
 
   const obtenerFavoritos = async () => {
@@ -103,17 +105,17 @@ function App() {
     try {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 15000)
-      
+
       const response = await fetch(`${API_URL}/favoritos`, {
         signal: controller.signal,
         headers: { 'Content-Type': 'application/json' }
       })
       clearTimeout(timeoutId)
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`)
       }
-      
+
       const data = await response.json()
       setFavoritos(data.data || data || [])
     } catch (err) {
@@ -329,7 +331,7 @@ function App() {
         {vistaActual === 'favoritos' && (
           <div className="vista-favoritos">
             <h2 className="titulo-favoritos">⭐ MIS AUDIODIARIOS FAVORITOS ⭐</h2>
-            
+
             {loading && <p className="cargando">⏳ Cargando...</p>}
 
             {favoritosJuegoActual.length === 0 ? (
@@ -339,23 +341,67 @@ function App() {
                 ¡Ve a la sección de audiodiarios y añade algunos!
               </p>
             ) : (
-              <div className="lista-favoritos">
-                {favoritosJuegoActual.map((favorito) => (
-                  <div key={favorito.id} className="favorito-card">
-                    <div className="favorito-header">
-                      <h3>#{favorito.numero} - {favorito.nombre}</h3>
-                      <span className="badge">{favorito.juego}</span>
-                    </div>
-                    <p className="descripcion">{favorito.descripcion}</p>
+              <div className="audiodiarios-layout">
+                <div className="lista-nombres">
+                  {favoritosJuegoActual.map((favorito) => (
                     <button
-                      className="boton-eliminar"
-                      onClick={() => deleteFavorito(favorito.id)}
-                      disabled={loading}
+                      key={favorito.id}
+                      className={`item-nombre ${favorito.id === favoritoSeleccionadoId ? 'activo' : ''}`}
+                      onClick={() => setFavoritoSeleccionadoId(favorito.id)}
                     >
-                      🗑️ ELIMINAR DE FAVORITOS
+                      #{favorito.numero} - {favorito.nombre}
                     </button>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                <div className="detalle-audio">
+                  {favoritosJuegoActual.length > 0 && favoritoSeleccionadoId ? (() => {
+                    const favoritoActual = favoritosJuegoActual.find(f => f.id === favoritoSeleccionadoId)
+                    const audioCompleto = audiodiarios[juego].find(a => a.numero === favoritoActual.numero)
+                    
+                    return (
+                      <>
+                        <h3 className="detalle-titulo">#{favoritoActual.numero} - {favoritoActual.nombre}</h3>
+                        <p className="detalle-personaje">Voz: {audioCompleto?.personaje || 'Personaje pendiente'}</p>
+
+                        <div className="detalle-media">
+                          {audioCompleto?.imagen ? (
+                            <img
+                              src={audioCompleto.imagen}
+                              alt={audioCompleto.personaje || 'Personaje'}
+                              className="imagen-personaje"
+                            />
+                          ) : (
+                            <div className="imagen-placeholder">Sin imagen</div>
+                          )}
+
+                          <div className="audio-box">
+                            {audioCompleto?.audio ? (
+                              <audio controls src={audioCompleto.audio} />
+                            ) : (
+                              <p className="sin-audio">Audio pendiente</p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="texto-completo">
+                          <h4>Transcripción</h4>
+                          <p>{audioCompleto?.texto || audioCompleto?.descripcion || favoritoActual.descripcion || 'Transcripción pendiente de completar.'}</p>
+                        </div>
+
+                        <button
+                          className="boton-eliminar"
+                          onClick={() => deleteFavorito(favoritoActual.id)}
+                          disabled={loading}
+                        >
+                          🗑️ ELIMINAR DE FAVORITOS
+                        </button>
+                      </>
+                    )
+                  })() : (
+                    <p className="sin-audio">Selecciona un audiodiario para ver su detalle</p>
+                  )}
+                </div>
               </div>
             )}
           </div>
