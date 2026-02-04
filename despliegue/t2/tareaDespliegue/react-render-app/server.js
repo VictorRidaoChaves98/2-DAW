@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
-const Tarea = require('./models/Tarea');
+const Favorito = require('./models/Favorito');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,113 +27,125 @@ app.use(express.json());
 
 // ============= RUTAS =============
 
-// GET /tareas - Obtener todas las tareas
-app.get('/tareas', async (req, res) => {
+// GET /favoritos - Obtener todos los audiodiarios favoritos
+app.get('/favoritos', async (req, res) => {
     try {
-        const tareas = await Tarea.find().sort({ createdAt: -1 });
+        const favoritos = await Favorito.find().sort({ fecha_guardado: -1 });
         
         res.json({
             success: true,
-            mensaje: 'Lista de tareas obtenida correctamente',
-            data: tareas,
-            total: tareas.length
+            mensaje: 'Lista de favoritos obtenida correctamente',
+            data: favoritos,
+            total: favoritos.length
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            mensaje: 'Error al obtener las tareas',
+            mensaje: 'Error al obtener los favoritos',
             error: error.message
         });
     }
 });
 
-// GET /tareas/:id - Obtener una tarea específica
-app.get('/tareas/:id', async (req, res) => {
+// GET /favoritos/:id - Obtener un audiodiario favorito específico
+app.get('/favoritos/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const tarea = await Tarea.findById(id);
+        const favorito = await Favorito.findById(id);
 
-        if (!tarea) {
+        if (!favorito) {
             return res.status(404).json({
                 success: false,
-                mensaje: 'Tarea no encontrada',
+                mensaje: 'Favorito no encontrado',
                 data: null
             });
         }
 
         res.json({
             success: true,
-            mensaje: 'Tarea obtenida correctamente',
-            data: tarea
+            mensaje: 'Favorito obtenido correctamente',
+            data: favorito
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            mensaje: 'Error al obtener la tarea',
+            mensaje: 'Error al obtener el favorito',
             error: error.message
         });
     }
 });
 
-// POST /tareas - Crear una nueva tarea
-app.post('/tareas', async (req, res) => {
+// POST /favoritos - Añadir un nuevo audiodiario a favoritos
+app.post('/favoritos', async (req, res) => {
     try {
-        const { titulo, descripcion } = req.body;
+        const { juego, nombre, numero, descripcion } = req.body;
 
         // Validar que se proporcionen los datos requeridos
-        if (!titulo || !descripcion) {
+        if (!juego || !nombre || !numero || !descripcion) {
             return res.status(400).json({
                 success: false,
-                mensaje: 'El título y la descripción son obligatorios',
+                mensaje: 'El juego, nombre, número y descripción son obligatorios',
                 data: null
             });
         }
 
-        // Crear nueva tarea en MongoDB
-        const nuevaTarea = new Tarea({
-            titulo,
+        // Validar que el juego sea uno de los disponibles
+        const juegosValidos = ['Bioshock 1', 'Bioshock 2', 'Bioshock Infinite'];
+        if (!juegosValidos.includes(juego)) {
+            return res.status(400).json({
+                success: false,
+                mensaje: 'El juego especificado no es válido',
+                data: null
+            });
+        }
+
+        // Crear nuevo favorito en MongoDB
+        const nuevoFavorito = new Favorito({
+            juego,
+            nombre,
+            numero,
             descripcion
         });
 
-        await nuevaTarea.save();
+        await nuevoFavorito.save();
 
         res.status(201).json({
             success: true,
-            mensaje: 'Tarea creada correctamente',
-            data: nuevaTarea
+            mensaje: 'Audiodiario añadido a favoritos correctamente',
+            data: nuevoFavorito
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            mensaje: 'Error al crear la tarea',
+            mensaje: 'Error al añadir el audiodiario a favoritos',
             error: error.message
         });
     }
 });
 
-// DELETE /tareas/:id - Eliminar una tarea
-app.delete('/tareas/:id', async (req, res) => {
+// DELETE /favoritos/:id - Eliminar un audiodiario de favoritos
+app.delete('/favoritos/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const tareaEliminada = await Tarea.findByIdAndDelete(id);
+        const favoritoEliminado = await Favorito.findByIdAndDelete(id);
 
-        if (!tareaEliminada) {
+        if (!favoritoEliminado) {
             return res.status(404).json({
                 success: false,
-                mensaje: 'Tarea no encontrada',
+                mensaje: 'Favorito no encontrado',
                 data: null
             });
         }
 
         res.json({
             success: true,
-            mensaje: 'Tarea eliminada correctamente',
-            data: tareaEliminada
+            mensaje: 'Audiodiario eliminado de favoritos correctamente',
+            data: favoritoEliminado
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            mensaje: 'Error al eliminar la tarea',
+            mensaje: 'Error al eliminar el audiodiario de favoritos',
             error: error.message
         });
     }
@@ -142,15 +154,16 @@ app.delete('/tareas/:id', async (req, res) => {
 // Ruta de bienvenida
 app.get('/', (req, res) => {
     res.json({
-        mensaje: 'Bienvenido a la API REST de Tareas con MongoDB',
+        mensaje: 'Bienvenido a la API REST de Audiodiarios Bioshock con MongoDB',
         version: '2.0.0',
         database: 'MongoDB Atlas',
         rutas: {
-            'GET /tareas': 'Obtener todas las tareas',
-            'GET /tareas/:id': 'Obtener una tarea específica',
-            'POST /tareas': 'Crear una nueva tarea',
-            'DELETE /tareas/:id': 'Eliminar una tarea'
-        }
+            'GET /favoritos': 'Obtener todos los audiodiarios favoritos',
+            'GET /favoritos/:id': 'Obtener un audiodiario favorito específico',
+            'POST /favoritos': 'Añadir un nuevo audiodiario a favoritos',
+            'DELETE /favoritos/:id': 'Eliminar un audiodiario de favoritos'
+        },
+        juegosDisponibles: ['Bioshock 1', 'Bioshock 2', 'Bioshock Infinite']
     });
 });
 
@@ -166,7 +179,7 @@ app.use((req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`✅ Servidor ejecutándose en http://localhost:${PORT}`);
-    console.log(`📝 API de Tareas disponible en http://localhost:${PORT}/tareas`);
+    console.log(`🎮 API de Audiodiarios Bioshock disponible en http://localhost:${PORT}/favoritos`);
 });
 
 module.exports = app;
