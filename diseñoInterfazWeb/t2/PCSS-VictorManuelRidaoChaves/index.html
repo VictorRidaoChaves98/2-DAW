@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CV Online - Victor Manuel Ridao Chaves</title>
+    <!-- Tipografias con personalidad sin perder legibilidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Fondo con gradientes suaves para dar contexto visual -->
+    <div class="page-glow" aria-hidden="true"></div>
+
+    <!-- Barra de navegacion tipo pestañas: una sola pagina, scroll infinito -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__initials">VR</span>
+        <div class="brand__text">
+          <p class="brand__name">Victor Manuel Ridao Chaves</p>
+          <p class="brand__role">Desarrollador Web</p>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Secciones del curriculum">
+        <!-- Cada boton hace scroll a su seccion correspondiente -->
+        <button class="tab is-active" data-target="inicio">Inicio</button>
+        <button class="tab" data-target="perfil">Perfil</button>
+        <button class="tab" data-target="habilidades">Habilidades</button>
+        <button class="tab" data-target="experiencia">Experiencia</button>
+        <button class="tab" data-target="proyectos">Proyectos</button>
+        <button class="tab" data-target="formacion">Formacion</button>
+        <button class="tab" data-target="contacto">Contacto</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Seccion hero con llamada a la accion -->
+      <section id="inicio" class="section hero">
+        <div class="hero__content">
+          <p class="eyebrow">CV Online</p>
+          <h1>
+            Desarrollo interfaces limpias, rapidas y escalables.
+            <span>Con foco en experiencia de usuario.</span>
+          </h1>
+          <p class="lead">
+            En busqueda de proyectos que mezclen codigo cuidado, accesibilidad y
+            diseño con personalidad. Especializado en HTML, CSS, JavaScript y
+            frameworks modernos.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#contacto">Hablemos</a>
+            <a class="btn btn--ghost" href="#proyectos">Ver proyectos</a>
+          </div>
+        </div>
+        <div class="hero__card">
+          <div class="stat">
+            <span class="stat__value">2+</span>
+            <span class="stat__label">Anos de formacion</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">8</span>
+            <span class="stat__label">Proyectos front-end</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">100%</span>
+            <span class="stat__label">Responsive + accesible</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Perfil profesional -->
+      <section id="perfil" class="section">
+        <div class="section__header">
+          <h2>Perfil profesional</h2>
+          <p>
+            Desarrollo front-end con enfoque en estetica, semantica y detalle.
+            Trabajo bien en equipo, disfruto documentar y cuidar microinteracciones.
+          </p>
+        </div>
+        <div class="grid grid--two">
+          <article class="card">
+            <h3>Enfoque</h3>
+            <ul>
+              <li>Diseño responsive desde mobile-first.</li>
+              <li>UI clara con jerarquia tipografica.</li>
+              <li>Componentes reutilizables y escalables.</li>
+              <li>Accesibilidad, contraste y rendimiento.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Valores</h3>
+            <ul>
+              <li>Codigo limpio y bien comentado.</li>
+              <li>Colaboracion y feedback constante.</li>
+              <li>Aprendizaje continuo y curiosidad.</li>
+              <li>Documentacion clara para el equipo.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Habilidades -->
+      <section id="habilidades" class="section">
+        <div class="section__header">
+          <h2>Habilidades</h2>
+          <p>Stack enfocado en front-end, con bases solidas en back-end.</p>
+        </div>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill__title">HTML5 / Accesibilidad</div>
+            <div class="skill__bar" data-level="90"></div>
+          </div>
+          <div class="skill">
+            <div class="skill__title">CSS3 / Layout avanzado</div>
+            <div class="skill__bar" data-level="88"></div>
+          </div>
+          <div class="skill">
+            <div class="skill__title">JavaScript / ES6+</div>
+            <div class="skill__bar" data-level="80"></div>
+          </div>
+          <div class="skill">
+            <div class="skill__title">React / Vue basico</div>
+            <div class="skill__bar" data-level="65"></div>
+          </div>
+          <div class="skill">
+            <div class="skill__title">Node.js / APIs</div>
+            <div class="skill__bar" data-level="55"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiencia -->
+      <section id="experiencia" class="section">
+        <div class="section__header">
+          <h2>Experiencia</h2>
+          <p>Proyectos academicos y colaboraciones donde aporte valor real.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline__item">
+            <h3>Desarrollador Front-End (Practicas)</h3>
+            <p class="timeline__meta">2024 · Agencia local</p>
+            <p>
+              Maquetacion responsive, optimizacion de estilos y mejora de
+              accesibilidad en landing pages para clientes.
+            </p>
+          </article>
+          <article class="timeline__item">
+            <h3>Proyecto de clase · Plataforma educativa</h3>
+            <p class="timeline__meta">2023 · DAW</p>
+            <p>
+              Diseño de interfaz, sistema de tarjetas y secciones con animaciones.
+              Coordinacion con backend para consumo de API.
+            </p>
+          </article>
+          <article class="timeline__item">
+            <h3>Freelance · Landing para evento</h3>
+            <p class="timeline__meta">2022</p>
+            <p>
+              Creacion de landing con inscripcion, estilos personalizados y
+              adaptacion a dispositivos moviles.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Proyectos -->
+      <section id="proyectos" class="section">
+        <div class="section__header">
+          <h2>Proyectos destacados</h2>
+          <p>Una seleccion de trabajos donde se nota mi enfoque visual.</p>
+        </div>
+        <div class="grid grid--three">
+          <article class="card card--project">
+            <h3>Portfolio dinamico</h3>
+            <p>
+              Sitio con microinteracciones, scroll suave y sistema de temas.
+            </p>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </article>
+          <article class="card card--project">
+            <h3>Dashboard de ventas</h3>
+            <p>
+              UI modular con graficos, filtros y layout responsive avanzado.
+            </p>
+            <span class="tag">Grid</span>
+            <span class="tag">Flex</span>
+            <span class="tag">Animaciones</span>
+          </article>
+          <article class="card card--project">
+            <h3>Landing de producto</h3>
+            <p>
+              Enfoque en conversion: tipografia fuerte y CTA claros.
+            </p>
+            <span class="tag">UX</span>
+            <span class="tag">SEO</span>
+            <span class="tag">Accesible</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- Formacion -->
+      <section id="formacion" class="section">
+        <div class="section__header">
+          <h2>Formacion</h2>
+          <p>Actualizado y en crecimiento constante.</p>
+        </div>
+        <div class="grid grid--two">
+          <article class="card">
+            <h3>Grado Superior DAW</h3>
+            <p class="timeline__meta">2023 - 2025 · IES</p>
+            <p>
+              Desarrollo de aplicaciones web, bases de datos, despliegue y
+              diseño de interfaces.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Certificaciones extra</h3>
+            <p class="timeline__meta">2022 - 2024</p>
+            <p>
+              Curso avanzado de CSS, fundamentos de UX y animaciones en web.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto" class="section contact">
+        <div class="section__header">
+          <h2>Contacto</h2>
+          <p>Disponible para entrevistas, practicas o colaboraciones.</p>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__card">
+            <h3>Escribeme</h3>
+            <p>correo@ejemplo.com</p>
+            <p>+34 600 000 000</p>
+            <p>Murcia, Espana</p>
+          </div>
+          <form class="contact__form">
+            <!-- Formulario simple para dar sensacion de interactividad -->
+            <label>
+              Nombre
+              <input type="text" placeholder="Tu nombre" />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="tu@email.com" />
+            </label>
+            <label>
+              Mensaje
+              <textarea rows="4" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+            </label>
+            <button class="btn btn--primary" type="button">Enviar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Actualizado 2026 · Hecho con HTML5, CSS3 y un toque de JS.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
