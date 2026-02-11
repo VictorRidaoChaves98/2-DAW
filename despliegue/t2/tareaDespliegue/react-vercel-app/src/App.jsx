@@ -450,8 +450,8 @@ function App() {
                 <div className="detalle-audio">
                   {favoritosJuegoActual.length > 0 && favoritoSeleccionadoId ? (() => {
                     const favoritoActual = favoritosJuegoActual.find(f => f.id === favoritoSeleccionadoId)
+                    if (!favoritoActual) return <p>Favorito no encontrado.</p>
                     const audioCompleto = audiodiarios[juego].find(a => a.numero === favoritoActual.numero)
-                    
                     return (
                       <>
                         <h3 className="detalle-titulo">#{favoritoActual.numero} - {favoritoActual.nombre}</h3>
