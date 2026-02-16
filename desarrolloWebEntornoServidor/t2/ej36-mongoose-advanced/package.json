@@ -1,0 +1,21 @@
+{
+  "name": "tema36-mongoose-advanced",
+  "version": "1.0.0",
+  "description": "Ejercicios de Mongoose Avanzado - Discriminators, Hooks, Validaciones y Tipos Avanzados",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mongoose",
+    "mongodb",
+    "discriminators",
+    "hooks",
+    "validations"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.5.0"
+  }
+}

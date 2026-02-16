@@ -1,0 +1,27 @@
+{
+  "name": "ej35-mongoose-queries",
+  "version": "1.0.0",
+  "description": "Ejercicio de consultas con Mongoose - Paginación, Populate, Lookup y Agregaciones",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "weatherdata": "node src/queries/weatherdata-pagination.js",
+    "mflix": "node src/queries/mflix-populate-lookup.js",
+    "grades": "node src/queries/grades-aggregation.js",
+    "all": "npm run weatherdata && npm run mflix && npm run grades"
+  },
+  "keywords": [
+    "mongoose",
+    "mongodb",
+    "pagination",
+    "populate",
+    "lookup",
+    "aggregation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^9.1.5",
+    "mongoose-paginate-v2": "^1.9.1"
+  }
+}

@@ -1,0 +1,28 @@
+# Docker
+**/data/
+**/db/
+**/mongo-data/
+**/volumes/
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Node (por si se amplía el proyecto)
+node_modules/
+
+# Entorno
+.env
+.env.local
+.env.*.local

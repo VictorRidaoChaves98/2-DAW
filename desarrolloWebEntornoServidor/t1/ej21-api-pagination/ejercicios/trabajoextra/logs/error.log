@@ -1,0 +1,8 @@
+2025-12-10 19:15:54 [[31merror[39m]: Cannot destructure property 'username' of 'req.body' as it is undefined. - POST /api/auth/login
+2025-12-10 19:42:48 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:43:17 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:45:11 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:45:12 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:45:33 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:46:47 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
+2025-12-10 19:47:16 [[31merror[39m]: a is not defined - GET /api/notas?sortBy=title&order=asc
