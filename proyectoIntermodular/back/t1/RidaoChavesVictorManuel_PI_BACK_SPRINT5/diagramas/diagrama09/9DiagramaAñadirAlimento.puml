@@ -1,0 +1,27 @@
+@startuml
+actor Usuario
+participant "FrontEnd" as FE
+participant "BackEnd" as BE
+database "Base de Datos" as DB
+
+
+Usuario -> FE: Selecciona alimento y cantidad
+
+
+FE -> BE: POST /meals/addFood {alimentoId, cantidad}
+
+
+BE -> DB: Obtener calorías por 100g del alimento
+DB --> BE: Datos nutricionales
+
+
+BE -> BE: Calcular calorías totales
+BE -> DB: Insertar alimento en comida actual
+DB --> BE: Confirmación
+
+
+BE --> FE: 200 OK + nueva suma total
+FE --> Usuario: Mostrar calorías actualizadas
+
+
+@enduml

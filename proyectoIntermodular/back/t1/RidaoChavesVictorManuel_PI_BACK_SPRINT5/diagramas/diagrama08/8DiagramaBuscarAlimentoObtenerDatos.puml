@@ -1,0 +1,20 @@
+@startuml
+actor Usuario
+participant "FrontEnd" as FE
+participant "BackEnd" as BE
+participant "API Externa de Alimentos" as API
+
+
+Usuario -> FE: Introduce nombre del alimento
+FE -> BE: GET /foods/search?query=manzana
+
+
+BE -> API: Consultar alimento en API externa
+API --> BE: Información nutricional
+
+
+BE --> FE: Datos procesados (calorías, macros)
+FE --> Usuario: Mostrar información nutricional
+
+
+@enduml

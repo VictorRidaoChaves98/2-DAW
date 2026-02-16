@@ -1,0 +1,28 @@
+@startjson
+{
+    "recipeId": "string",
+    "authorId": "string",
+    "title": "string",
+    "description": "string",
+    "ingredients": [
+    {
+        "foodId": "string",
+        "name": "string",
+        "quantity": "number",
+        "unit": "string",
+        "calories": "number"
+    }
+    ],
+    "steps": [
+    {
+        "order": "number",
+        "instruction": "string"
+    }
+    ],
+    "totalCalories": "number",
+    "isPublic": "boolean",
+    "likes": "number",
+    "createdAt": "string",
+    "updatedAt": "string"
+}
+@endjson

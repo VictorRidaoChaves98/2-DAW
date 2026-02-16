@@ -1,0 +1,37 @@
+@startuml
+title Arquitectura de Componentes - BackEnd
+
+
+package "BackEnd (Node/Express o Spring o similar)" {
+
+
+    component "API REST" as API
+
+
+    component "Módulo de Usuarios" as UserModule
+    component "Módulo de Alimentos" as FoodModule
+    component "Módulo de Recetas" as RecipeModule
+    component "Módulo Social" as SocialModule
+    component "Capa de Seguridad / JWT" as Auth
+    component "Capa de Acceso a Datos" as DAO
+
+
+    API --> UserModule
+    API --> FoodModule
+    API --> RecipeModule
+    API --> SocialModule
+    API --> Auth
+
+
+    UserModule --> DAO
+    FoodModule --> DAO
+    RecipeModule --> DAO
+    SocialModule --> DAO
+
+
+    database "Base de Datos\n(MySQL / Mongo / PostgreSQL)" as DB
+    DAO --> DB
+}
+
+
+@enduml

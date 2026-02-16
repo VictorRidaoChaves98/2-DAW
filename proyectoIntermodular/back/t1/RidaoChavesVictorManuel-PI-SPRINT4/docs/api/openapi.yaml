@@ -1,0 +1,618 @@
+openapi: 3.0.3
+info:
+  title: Calorie Calculator API
+  version: 1.0.0
+paths:
+
+  # ---------- USERS ----------
+  /v1/users:
+    post:
+      summary: Crear un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '201':
+          description: Usuario creado
+        '400':
+          description: Error de validación
+        '409':
+          description: Email ya registrado
+      security:
+        - bearerAuth: []
+
+    get:
+      summary: Listar usuarios
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Lista de usuarios con paginación
+      security:
+        - bearerAuth: []
+
+  /v1/users/{id}:
+    get:
+      summary: Obtener información de un usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Datos del usuario
+        '404':
+          description: Usuario no encontrado
+      security:
+        - bearerAuth: []
+
+    put:
+      summary: Actualizar un usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Usuario actualizado
+        '400':
+          description: Error de validación
+        '404':
+          description: Usuario no encontrado
+      security:
+        - bearerAuth: []
+
+    delete:
+      summary: Eliminar un usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Usuario eliminado
+        '404':
+          description: Usuario no encontrado
+      security:
+        - bearerAuth: []
+
+  # ---------- FOODS ----------
+  /v1/foods:
+    post:
+      summary: Crear un nuevo alimento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                calories_per_unit:
+                  type: number
+                type:
+                  type: string
+                  enum: [protein, carbohydrate, fat]
+                unit:
+                  type: string
+              required:
+                - name
+                - calories_per_unit
+                - type
+                - unit
+      responses:
+        '201':
+          description: Alimento creado
+        '400':
+          description: Error de validación
+    get:
+      summary: Listar alimentos
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Lista de alimentos con paginación
+
+  /v1/foods/{id}:
+    get:
+      summary: Obtener un alimento
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Información del alimento
+        '404':
+          description: Alimento no encontrado
+    put:
+      summary: Actualizar un alimento
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                calories_per_unit:
+                  type: number
+                type:
+                  type: string
+                  enum: [protein, carbohydrate, fat]
+                unit:
+                  type: string
+      responses:
+        '200':
+          description: Alimento actualizado
+        '404':
+          description: Alimento no encontrado
+    delete:
+      summary: Eliminar un alimento
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Alimento eliminado
+        '404':
+          description: Alimento no encontrado
+
+  # ---------- EXERCISES ----------
+  /v1/exercises:
+    post:
+      summary: Crear un ejercicio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                calories_per_unit:
+                  type: number
+                type:
+                  type: string
+                  enum: [cardio, strength]
+              required:
+                - name
+                - calories_per_unit
+                - type
+      responses:
+        '201':
+          description: Ejercicio creado
+        '400':
+          description: Error de validación
+    get:
+      summary: Listar ejercicios
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Lista de ejercicios con paginación
+
+  /v1/exercises/{id}:
+    get:
+      summary: Obtener un ejercicio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Información del ejercicio
+        '404':
+          description: Ejercicio no encontrado
+    put:
+      summary: Actualizar un ejercicio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                calories_per_unit:
+                  type: number
+                type:
+                  type: string
+                  enum: [cardio, strength]
+      responses:
+        '200':
+          description: Ejercicio actualizado
+        '404':
+          description: Ejercicio no encontrado
+    delete:
+      summary: Eliminar un ejercicio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Ejercicio eliminado
+        '404':
+          description: Ejercicio no encontrado
+
+  # ---------- CONSUMPTIONS ----------
+  /v1/consumptions:
+    post:
+      summary: Registrar un consumo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                food_id:
+                  type: integer
+                quantity:
+                  type: number
+                date:
+                  type: string
+                  format: date
+              required:
+                - user_id
+                - food_id
+                - quantity
+                - date
+      responses:
+        '201':
+          description: Consumo registrado
+        '400':
+          description: Error de validación
+    get:
+      summary: Listar consumos
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Lista de consumos con paginación
+
+  /v1/consumptions/{id}:
+    get:
+      summary: Obtener un consumo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Información del consumo
+        '404':
+          description: Consumo no encontrado
+    put:
+      summary: Actualizar un consumo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                date:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Consumo actualizado
+        '404':
+          description: Consumo no encontrado
+    delete:
+      summary: Eliminar un consumo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Consumo eliminado
+        '404':
+          description: Consumo no encontrado
+
+  # ---------- ACTIVITIES ----------
+  /v1/activities:
+    post:
+      summary: Registrar actividad física
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                exercise_id:
+                  type: integer
+                duration:
+                  type: number
+                date:
+                  type: string
+                  format: date
+              required:
+                - user_id
+                - exercise_id
+                - duration
+                - date
+      responses:
+        '201':
+          description: Actividad registrada
+        '400':
+          description: Error de validación
+    get:
+      summary: Listar actividades
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Lista de actividades con paginación
+
+  /v1/activities/{id}:
+    get:
+      summary: Obtener una actividad
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Información de la actividad
+        '404':
+          description: Actividad no encontrada
+    put:
+      summary: Actualizar una actividad
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                duration:
+                  type: number
+                date:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Actividad actualizada
+        '404':
+          description: Actividad no encontrada
+    delete:
+      summary: Eliminar una actividad
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Actividad eliminada
+        '404':
+          description: Actividad no encontrada
+
+  # ---------- GOALS ----------
+  /v1/goals:
+    post:
+      summary: Crear objetivo nutricional
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                daily_calories:
+                  type: number
+                protein:
+                  type: number
+                carbohydrates:
+                  type: number
+                fat:
+                  type: number
+              required:
+                - user_id
+                - daily_calories
+      responses:
+        '201':
+          description: Objetivo creado
+        '400':
+          description: Error de validación
+    get:
+      summary: Listar objetivos
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de objetivos
+
+  /v1/goals/{user_id}:
+    get:
+      summary: Obtener objetivo de un usuario
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Información del objetivo
+        '404':
+          description: Objetivo no encontrado
+    put:
+      summary: Actualizar objetivo de un usuario
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                daily_calories:
+                  type: number
+                protein:
+                  type: number
+                carbohydrates:
+                  type: number
+                fat:
+                  type: number
+      responses:
+        '200':
+          description: Objetivo actualizado
+        '404':
+          description: Objetivo no encontrado
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
