@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Party - Party Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Party Finder</h1>
+
+    <button type="button" id="toggleFormBtn">Crear nueva Party</button>
+
+    <div id="formContainer" style="display:none;">
+        <form id="partyForm">
+            <label>Party Size:
+                <select name="partySize" id="partySize">
+                    <option value="">--Selecciona--</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="8">8</option>
+                </select>
+            </label><br><br>
+
+            <label>Creator ID:
+                <input type="text" id="creatorId" name="creatorId">
+            </label><br><br>
+
+            <label>Level Cap:
+                <input type="number" id="levelCap" name="levelCap" min="1">
+            </label><br><br>
+
+            <label>Item Level Cap:
+                <input type="number" id="ilvlCap" name="ilvlCap" min="1">
+            </label><br><br>
+
+            <label>Party Role:
+                <select name="partyRole" id="partyRole">
+                    <option value="">--Selecciona--</option>
+                    <option value="TANK">TANK</option>
+                    <option value="HEALER">HEALER</option>
+                    <option value="DAMAGE">DAMAGE</option>
+                    <option value="SUPPORT">SUPPORT</option>
+                </select>
+            </label><br><br>
+
+            <label>Planned Start (DD/MM/YYYY_HH:mm):
+                <input type="text" id="plannedStart" name="plannedStart" placeholder="DD/MM/YYYY_HH:mm">
+            </label><br><br>
+
+            <button type="submit">Crear Party</button>
+            <button type="button" onclick="resetForm()">Limpiar</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <h2>Parties creadas</h2>
+    <div class="table-container">
+        <div id="partyList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+[
+    {
+        "partyId": 1,
+        "partySize": "3",
+        "creatorId": "user123",
+        "levelCap": 10,
+        "ilvlCap": 100,
+        "partyRole": "TANK",
+        "plannedStart": "25\/10\/2025_14:00"
+    },
+    {
+        "partyId": 2,
+        "partySize": "8",
+        "creatorId": "user125",
+        "levelCap": 8,
+        "ilvlCap": 7,
+        "role": "TANK",
+        "plannedStart": "25\/10\/2025_14:00"
+    },
+    {
+        "partyId": 3,
+        "partySize": "5",
+        "creatorId": "user345",
+        "levelCap": 9,
+        "ilvlCap": 9,
+        "role": "HEALER",
+        "plannedStart": "25\/10\/2025_14:00"
+    },
+    {
+        "partyId": 4,
+        "partySize": "5",
+        "creatorId": "user444",
+        "levelCap": 6,
+        "ilvlCap": 6,
+        "role": "TANK",
+        "plannedStart": "25\/10\/2025_14:00"
+    },
+    {
+        "partyId": 5,
+        "partySize": "5",
+        "creatorId": "user222",
+        "levelCap": 10,
+        "ilvlCap": 100,
+        "role": "HEALER",
+        "plannedStart": "25\/10\/2025_14:00"
+    },
+        {
+        "partySize": "5",
+        "creatorId": "user123",
+        "levelCap": 11,
+        "ilvlCap": 111,
+        "partyRole": "DAMAGE",
+        "plannedStart": "25\/10\/2025_14:00"
+    }
+]

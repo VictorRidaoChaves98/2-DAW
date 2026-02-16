@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - PokeAPI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Ejercicio 2 - PokeAPI</h1>
+
+    <!-- PARTE 1 -->
+    <section class="card">
+        <h2>🔍 Buscar Pokémon</h2>
+        <input type="text" id="pokemonInput" placeholder="Ej: pikachu">
+        <button onclick="buscarPokemon()">Buscar</button>
+        <div id="pokemonInfo"></div>
+    </section>
+
+    <hr>
+
+    <!-- PARTE 2 -->
+    <section class="card">
+        <h2>⚔️ Comparar Pokémon</h2>
+        <div class="input-group">
+            <input type="text" id="pokemon1" placeholder="Ej: charizard">
+            <input type="text" id="pokemon2" placeholder="Ej: blastoise">
+        </div>
+        <button onclick="compararPokemon()">Comparar</button>
+        <div id="comparativa"></div>
+    </section>
+
+    <hr>
+
+    <!-- PARTE 3 -->
+    <section class="card">
+        <h2>🧬 Cadena Evolutiva</h2>
+        <input type="text" id="pokemonEvolucion" placeholder="Ej: charmander">
+        <button onclick="mostrarCadenaEvolutiva()">Ver Evolución</button>
+        <div id="evolucion"></div>
+    </section>
+
+    <script src="ejercicio2.js"></script>
+</body>
+
+</html>

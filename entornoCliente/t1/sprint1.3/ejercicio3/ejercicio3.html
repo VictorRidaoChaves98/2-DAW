@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guild Members Management</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <h1>Guild Member Management</h1>
+    <button id="addMemberBtn" class="btn-primary">Add New Member</button>
+
+    <table id="membersTable">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Level</th>
+                <th>Item Level</th>
+                <th>Character Role</th>
+                <th>Guild Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modalTitle">Add New Member</h2>
+
+            <form id="memberForm">
+                <input type="hidden" id="editingIndex" />
+
+                <label>User ID:</label>
+                <input type="text" id="user_id" required />
+
+                <label>Username:</label>
+                <input type="text" id="username" required />
+
+                <label>Level:</label>
+                <input type="number" id="level" required min="1" />
+
+                <label>Item Level:</label>
+                <input type="number" id="ilvl" required min="0" />
+
+                <label>Character Role:</label>
+                <select id="character_role" required>
+                    <option>TANK</option>
+                    <option>HEALER</option>
+                    <option>DAMAGE</option>
+                    <option>SUPPORT</option>
+                </select>
+
+                <label>Guild Role:</label>
+                <select id="guild_role" required>
+                    <option>LIDER</option>
+                    <option>GERENTE SENIOR</option>
+                    <option>GERENTE</option>
+                    <option>GERENTE A2</option>
+                    <option>ALPHA 2</option>
+                    <option>MEMBER</option>
+                </select>
+
+                <label>Main Archetype:</label>
+                <select id="main_archetype" required>
+                    <option>BARD</option>
+                    <option>CLERIC</option>
+                    <option>FIGHTER</option>
+                    <option>MAGE</option>
+                    <option>RANGER</option>
+                    <option>ROGUE</option>
+                    <option>SUMMONER</option>
+                    <option>TANK</option>
+                </select>
+
+                <label>Secondary Archetype:</label>
+                <select id="secondary_archetype" required>
+                    <option>BARD</option>
+                    <option>CLERIC</option>
+                    <option>FIGHTER</option>
+                    <option>MAGE</option>
+                    <option>RANGER</option>
+                    <option>ROGUE</option>
+                    <option>SUMMONER</option>
+                    <option>TANK</option>
+                </select>
+
+                <label>Email:</label>
+                <input type="email" id="email" required />
+
+                <label>
+                    <input type="checkbox" id="notify_email" />
+                    Notify by Email
+                </label>
+
+                <button type="submit" class="btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ejercicio3.js"></script>
+</body>
+
+</html>

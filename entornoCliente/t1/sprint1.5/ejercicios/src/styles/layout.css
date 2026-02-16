@@ -1,0 +1,45 @@
+/* Estilos globales para toda la app */
+body {
+    font-family: 'Arial', sans-serif;
+    /* misma fuente que navbar */
+    font-size: 1.2rem;
+    /* más grande que la normal */
+    color: #ffffff;
+    /* color claro consistente */
+    background-color: #3d6891;
+    /* fondo oscuro */
+    margin: 0;
+    padding: 0;
+}
+
+/* NavBar */
+.navbar {
+    display: flex;
+    gap: 1.5rem;
+    background-color: #2c3e50;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #34495e;
+}
+
+/* Enlaces */
+.navbar a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover */
+.navbar a:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Enlace activo */
+.navbar a.active {
+    background-color: #2980b9;
+    color: white;
+}

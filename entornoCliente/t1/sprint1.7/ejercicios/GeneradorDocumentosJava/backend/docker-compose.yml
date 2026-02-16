@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: gen-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./outputs:/app/outputs
+      - ./src:/app/src
+      - ./frontend:/app/frontend
+      - ./src/data:/app/src/data
+    environment:
+      - NODE_ENV=production
+      - LMSTUDIO_URL=${LMSTUDIO_URL:-http://host.docker.internal:1234}
+      - LMSTUDIO_API_PATH=${LMSTUDIO_API_PATH:-/api/generate}
+      - LMSTUDIO_MODEL=${LMSTUDIO_MODEL:-qwen/qwen3-4b-2507}
+      - LMSTUDIO_API_KEY=${LMSTUDIO_API_KEY:-}
+      - USE_IA=${USE_IA:-false}
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: gen-frontend
+    ports:
+      - "8978:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+
+# Optional: LMStudio service (commented example). Replace with the correct LMStudio image
+# lmstudio:
+#   image: lmstudio/image:latest
+#   container_name: lmstudio
+#   ports:
+#     - "1234:1234"
+#   volumes:
+#     - ./models:/models
+#   environment:
+#     - MODEL_PATH=/models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+
+networks:
+  default:
+    driver: bridge

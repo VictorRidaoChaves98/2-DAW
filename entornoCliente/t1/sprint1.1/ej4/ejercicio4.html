@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4 - Hover y Estilo Dinámico</title>
+    <script src="ejercicio4.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Permite varios divs en filas */
+            font-family: Arial, sans-serif;
+            gap: 15px;
+            background-color: #f0f0f0;
+        }
+
+        .miDiv {
+            width: 150px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ddd;
+            /* color original */
+            color: #333;
+            /* texto original */
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            /* suaviza el cambio de color */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Varios divs con textos diferentes -->
+    <div class="miDiv">Elemento 1</div>
+    <div class="miDiv">Elemento 2</div>
+    <div class="miDiv">Elemento 3</div>
+    <div class="miDiv">Elemento 4</div>
+    <div class="miDiv">Elemento 5</div>
+</body>
+
+</html>

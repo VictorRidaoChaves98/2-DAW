@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador Documentos Java</title>
+    <script type="module" crossorigin src="/assets/index-bMs8lMdG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bn_UBRGm.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador Documentos Java</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador Documentos Java - Frontend</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1>Generador Automático de Documentación Java</h1>
+      <p class="tagline">Analiza proyectos Java y genera documentación, UML y PDF automáticamente.</p>
+    </header>
+
+    <section class="card">
+      <h2>Analizar (demo)</h2>
+      <textarea id="codeInput" placeholder="Pega código Java aquí para prueba...">public class A { }</textarea>
+      <div class="row">
+        <button id="btnAnalyze">Analizar (usar código)</button>
+        <button id="btnAnalyzePath">Analizar ruta (path)</button>
+        <input id="pathInput" placeholder="Ruta local (ej. C:/ruta/proyecto)" />
+      </div>
+      <div id="result" class="result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Historial</h2>
+      <button id="btnRefresh">Refrescar historial</button>
+      <ul id="historyList"></ul>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

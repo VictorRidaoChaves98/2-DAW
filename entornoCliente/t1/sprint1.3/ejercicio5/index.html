@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Avanzada de Parties - Party Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Gestión de Parties</h1>
+
+    <h2>Parties creadas</h2>
+    <div class="table-container">
+        <table id="partyTable">
+            <thead>
+                <tr>
+                    <th>Party ID</th>
+                    <th>Creator ID</th>
+                    <th>Planned Start</th>
+                    <th>Level Cap</th>
+                    <th>Item Level Cap</th>
+                    <th># Miembros</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas generadas por JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para añadir/ver miembros -->
+    <div id="addMemberModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="closeBtn">&times;</span>
+            <h3>Añadir Miembro</h3>
+
+            <!-- Mensaje de éxito/error -->
+            <div id="modalMessage"></div>
+
+            <!-- Formulario para añadir miembro -->
+            <form id="addMemberForm">
+                <label>User ID:
+                    <input type="text" id="newUserId" required>
+                </label><br><br>
+                <label>Party Role:
+                    <select id="newUserRole" required>
+                        <option value="">--Selecciona--</option>
+                        <option value="TANK">TANK</option>
+                        <option value="HEALER">HEALER</option>
+                        <option value="DAMAGE">DAMAGE</option>
+                        <option value="SUPPORT">SUPPORT</option>
+                    </select>
+                </label><br><br>
+                <button type="submit">Añadir Miembro</button>
+            </form>
+
+            <!-- Lista de miembros -->
+            <div id="membersList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

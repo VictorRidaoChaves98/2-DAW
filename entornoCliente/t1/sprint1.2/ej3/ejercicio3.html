@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - Encuesta con Gráfico</title>
+    <style>
+        .bar-container {
+            margin: 5px 0;
+        }
+
+        .bar {
+            display: inline-block;
+            height: 20px;
+            background-color: steelblue;
+            text-align: right;
+            color: white;
+            padding-right: 5px;
+        }
+
+        .label {
+            margin-right: 10px;
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Encuesta</h1>
+    <p>¿Cuál es tu color favorito?</p>
+
+    <form id="encuestaForm">
+        <input type="radio" name="color" value="Rojo"> Rojo<br>
+        <input type="radio" name="color" value="Verde"> Verde<br>
+        <input type="radio" name="color" value="Azul"> Azul<br>
+        <input type="radio" name="color" value="Amarillo"> Amarillo<br>
+        <button type="button" id="enviarBtn">Enviar</button>
+    </form>
+
+    <h2>Resultados:</h2>
+    <div id="resultados"></div>
+
+    <script src="ejercicio3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1 - Cambio de Color</title>
+    <!-- Enlazamos el archivo JS con defer para que cargue después del HTML -->
+    <script src="ejercicio1.js" defer></script>
+    <style>
+        /* Estilos básicos del body para centrar contenido */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* Botón y texto en columna */
+            justify-content: center;
+            /* Centrado vertical */
+            align-items: center;
+            /* Centrado horizontal */
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilo del botón */
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            transition: background 0.3s;
+            /* Animación al hover */
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Estilo de la cajita que muestra el color RGB */
+        #colorTexto {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+            background: linear-gradient(to right, white, black);
+            /* Gradiente inicial */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Botón para cambiar el color de fondo -->
+    <button id="btnColor">Cambiar color</button>
+
+    <!-- Texto que mostrará los valores RGB -->
+    <p id="colorTexto">RGB(255, 255, 255)</p>
+</body>
+
+</html>

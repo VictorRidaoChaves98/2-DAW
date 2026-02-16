@@ -1,0 +1,40 @@
+[
+    {
+        "partyId": 1,
+        "creatorId": "user123",
+        "plannedStart": "21\/10\/2025_20:00",
+        "levelCap": 50,
+        "ilvlCap": 200,
+        "members": [
+            {
+                "userId": "user321",
+                "role": "TANK"
+            },
+            {
+                "userId": "user457",
+                "role": "HEALER"
+            },
+            {
+                "userId": "user333",
+                "role": "DAMAGE"
+            },
+            {
+                "userId": "user222",
+                "role": "SUPPORT"
+            }
+        ]
+    },
+    {
+        "partyId": 2,
+        "creatorId": "user789",
+        "plannedStart": "22\/10\/2025_18:30",
+        "levelCap": 60,
+        "ilvlCap": 220,
+        "members": [
+            {
+                "userId": "user987",
+                "role": "DAMAGE"
+            }
+        ]
+    }
+]

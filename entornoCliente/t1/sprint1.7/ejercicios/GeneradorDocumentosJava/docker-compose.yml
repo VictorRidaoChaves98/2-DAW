@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - LMSTUDIO_URL=${LMSTUDIO_URL:-http://host.docker.internal:1234}
+      - LMSTUDIO_API_PATH=${LMSTUDIO_API_PATH:-/v1/chat/completions}
+      - LMSTUDIO_MODEL=${LMSTUDIO_MODEL:-qwen/qwen3-4b-2507}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/outputs:/app/outputs
+
+  frontend:
+    build:
+      context: ./backend/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

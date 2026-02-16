@@ -1,0 +1,78 @@
+[
+  {
+    "id": "1767838039114-2024",
+    "timestamp": "2026-01-08T02:07:19.114Z",
+    "analysis": {
+      "path": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\src\\temp\\1767838037115-8546",
+      "files": 1,
+      "packages": [
+        "demo"
+      ],
+      "classes": 1,
+      "classDetails": [
+        {
+          "file": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\src\\temp\\1767838037115-8546\\src\\Main.java",
+          "class": "Main"
+        }
+      ],
+      "summary": "Found 1 .java files, 1 classes in 1 packages."
+    },
+    "outputs": {
+      "markdown": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\markdown\\analysis_1767838037126.md",
+      "uml": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\uml\\diagram_1767838037126.puml",
+      "pdf": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\pdf\\analysis_1767838037127.pdf"
+    }
+  },
+  {
+    "id": "1767837697993-2683",
+    "timestamp": "2026-01-08T02:01:37.993Z",
+    "analysis": {
+      "path": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\src\\temp\\1767837697981-8540",
+      "files": 1,
+      "packages": [
+        "demo"
+      ],
+      "classes": 1,
+      "classDetails": [
+        {
+          "file": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\src\\temp\\1767837697981-8540\\src\\Main.java",
+          "class": "Main"
+        }
+      ],
+      "summary": "Found 1 .java files, 1 classes in 1 packages."
+    },
+    "outputs": {
+      "markdown": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\markdown\\analysis_1767837697991.md",
+      "uml": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\uml\\diagram_1767837697992.puml",
+      "pdf": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\pdf\\analysis_1767837697993.txt"
+    }
+  },
+  {
+    "id": "1767826619465-7242",
+    "timestamp": "2026-01-07T22:56:59.465Z",
+    "analysis": {
+      "classes": 1,
+      "methods": 0,
+      "summary": "Found 1 classes and 0 methods."
+    },
+    "outputs": {
+      "markdown": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\markdown\\analysis_1767826619463.md",
+      "uml": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\uml\\diagram_1767826619464.puml",
+      "pdf": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\pdf\\analysis_1767826619464.txt"
+    }
+  },
+  {
+    "id": "1767826617352-7440",
+    "timestamp": "2026-01-07T22:56:57.352Z",
+    "analysis": {
+      "classes": 1,
+      "methods": 0,
+      "summary": "Found 1 classes and 0 methods."
+    },
+    "outputs": {
+      "markdown": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\markdown\\analysis_1767826617349.md",
+      "uml": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\uml\\diagram_1767826617351.puml",
+      "pdf": "C:\\Users\\Usuario\\Documents\\VMRC-EC\\t1\\sprint1.7\\ejercicios\\GeneradorDocumentosJava\\backend\\outputs\\pdf\\analysis_1767826617351.txt"
+    }
+  }
+]

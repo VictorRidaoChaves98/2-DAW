@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Análisis y Transformación de Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Ejercicio 1 - Análisis y Transformación Avanzada de Datos</h1>
+
+    <div>
+        <button onclick="probarDestacados()">1️⃣ Estudiantes Destacados</button>
+        <button onclick="probarMenorRendimiento()">2️⃣ Menor Rendimiento</button>
+        <button onclick="probarMejoraBeca()">3️⃣ Mejora Notas Beca</button>
+        <button onclick="probarFiltrado()">4️⃣ Filtrado Ciudad/Asignatura</button>
+        <button onclick="probarSinBeca()">5️⃣ Sin Beca por Ciudad</button>
+        <button onclick="probarPromedioEdad()">6️⃣ Promedio Edad con Beca</button>
+        <button onclick="probarMejores()">7️⃣ Mejores Estudiantes</button>
+        <button onclick="probarAprobados()">8️⃣ Todos Aprobados</button>
+    </div>
+
+    <h3>Resultado:</h3>
+    <pre id="resultado"></pre>
+
+    <script src="ejercicio1.js"></script>
+</body>
+
+</html>

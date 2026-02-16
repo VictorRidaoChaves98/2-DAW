@@ -1,0 +1,9 @@
+/* Minimal styles for loading and error blocks */
+.loading-block {
+    font-style: italic;
+    color: #333;
+}
+
+.error-block {
+    box-shadow: none;
+}
