@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "titulo": "Manzano",
+    "contenido": "calvo",
+    "categoria": "",
+    "updatedAt": 1765890374375
+  },
+  {
+    "id": 4,
+    "titulo": "Duda de clase",
+    "contenido": "Preguntar a gema por conexion de pantallas en figma",
+    "categoria": "",
+    "updatedAt": 1765890399127
+  },
+  {
+    "id": 6,
+    "titulo": "BRAWNDO",
+    "contenido": "ES LO QUE NECESITAN LAS PLANTAS"
+  },
+  {
+    "id": 7,
+    "titulo": "Bloodborne",
+    "contenido": "Bienvenido a Yharnam"
+  },
+  {
+    "id": 9,
+    "titulo": "Ultima nota",
+    "contenido": "Tengo mucho sueño"
+  },
+  {
+    "id": 1765425121307,
+    "createdAt": 1765425121307,
+    "updatedAt": 1765425121307,
+    "titulo": "Nota importada 1",
+    "contenido": "contenido test 1"
+  },
+  {
+    "id": 1765425160729,
+    "createdAt": 1765425160729,
+    "updatedAt": 1765425160729,
+    "titulo": "Nota importada 4",
+    "contenido": "adiossssss"
+  },
+  {
+    "id": 1765425160729,
+    "createdAt": 1765425160729,
+    "updatedAt": 1765425160729,
+    "titulo": "Nota importada 2",
+    "contenido": "holaaa"
+  },
+  {
+    "id": 1765425184463,
+    "createdAt": 1765425184463,
+    "updatedAt": 1765425184463,
+    "titulo": "Nota importada 2",
+    "contenido": "holaaa"
+  },
+  {
+    "id": 1765425207846,
+    "createdAt": 1765425207846,
+    "updatedAt": 1765425207846,
+    "titulo": "Nota importada 2",
+    "contenido": "holaaa"
+  },
+  {
+    "id": 1765425240670,
+    "createdAt": 1765425240670,
+    "updatedAt": 1765425240670,
+    "titulo": "test2",
+    "contenido": "Contenido sin JSON para nota 2"
+  },
+  {
+    "id": 1765890517805,
+    "createdAt": 1765890517805,
+    "updatedAt": 1765890517805,
+    "titulo": "Nota creada por asistente",
+    "contenido": "Esta es una nota de prueba subida por el asistente."
+  },
+  {
+    "id": 1765904716648,
+    "createdAt": 1765904716648,
+    "updatedAt": 1765904716648,
+    "titulo": "Comprar pan",
+    "contenido": "Ir a la panadería",
+    "etiquetas": [
+      "compras"
+    ]
+  },
+  {
+    "id": "bio-001",
+    "createdAt": "2025-12-16T16:37:00Z",
+    "updatedAt": 1765904954945,
+    "titulo": "BioShock - Plasmidos y mejoras",
+    "contenido": "Lista de tareas: 1. Encontrar todos los audiologs de Rapture, 2. Conseguir todas las mejoras de plasmidos (Electrobolt nivel 3, Incinerate nivel 3, 3. Completar el juego sin matar Little Sisters (final bueno), 4. Fotografiar todos los tipos de enemigos para la guía del investigador, 5. Mejorar todas las armas en las estaciones de 'Power to the People', 6. Derrotar a Andrew Ryan y Frank Fontaine",
+    "categoria": "fps-inmersivo"
+  }
+]

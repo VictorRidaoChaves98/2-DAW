@@ -1,0 +1,13 @@
+{
+    "name": "ej3-scripts-files",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "crear": "node scripts/fileManager.js crear",
+        "crear:js": "node scripts/fileManager.js crear:js",
+        "crear:carpeta": "node scripts/fileManager.js crear:carpeta",
+        "borrar": "node scripts/fileManager.js borrar",
+        "borrar:js": "node scripts/fileManager.js borrar:js"
+    },
+    "dependencies": {}
+}

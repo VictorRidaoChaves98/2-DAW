@@ -1,0 +1,16 @@
+{
+    "name": "ejercicio2-fizzbuzz",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest watch",
+        "test:coverage": "vitest run --coverage",
+        "test:report": "vitest run --coverage --reporter=html"
+    },
+    "devDependencies": {
+        "vitest": "^1.5.7",
+        "eslint": "^8.0.0",
+        "prettier": "^3.0.0"
+    }
+}

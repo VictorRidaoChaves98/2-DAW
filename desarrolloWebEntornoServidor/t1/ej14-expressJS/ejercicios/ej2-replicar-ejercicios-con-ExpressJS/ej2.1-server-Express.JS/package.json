@@ -1,0 +1,13 @@
+{
+    "name": "ej1-proyecto-expressjs",
+    "version": "1.0.0",
+    "description": "Servidor Express básico",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
+    }
+}

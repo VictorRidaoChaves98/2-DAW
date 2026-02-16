@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Ejecutar index.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/index.js",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Ejecutar archivo actual",
+            "type": "node",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

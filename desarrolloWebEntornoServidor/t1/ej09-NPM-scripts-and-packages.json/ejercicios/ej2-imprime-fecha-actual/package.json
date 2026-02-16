@@ -1,0 +1,7 @@
+{
+    "name": "ejercicio-date",
+    "version": "1.0.0",
+    "scripts": {
+        "date": "node date.js"
+    }
+}

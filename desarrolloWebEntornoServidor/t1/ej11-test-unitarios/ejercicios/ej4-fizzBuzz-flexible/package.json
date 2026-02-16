@@ -1,0 +1,22 @@
+{
+  "name": "ej4-fizzbuzz-flexible",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "prettier": "^3.6.2",
+    "vitest": "^4.0.6"
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "d3d7f0b6-0000-4000-8000-000000000000",
+    "name": "Gestor Notas - Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"victor\",\n  \"password\": \"supermegaesternocleidomastoideo12345\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Notas - All (no query)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/notas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "notas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Notas - Filter by title + sort by size",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/notas?title=prueba&sortBy=size&order=asc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "notas"
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "prueba"
+            },
+            {
+              "key": "sortBy",
+              "value": "size"
+            },
+            {
+              "key": "order",
+              "value": "asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Notas - Date range + pagination",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/notas?from=1609459200000&to=1704067199000&page=1&perPage=5&sortBy=date&order=desc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "notas"
+          ],
+          "query": [
+            { "key": "from", "value": "1609459200000" },
+            { "key": "to", "value": "1704067199000" },
+            { "key": "page", "value": "1" },
+            { "key": "perPage", "value": "5" },
+            { "key": "sortBy", "value": "date" },
+            { "key": "order", "value": "desc" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST Notas - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{ \"titulo\": \"Nota Postman\", \"contenido\": \"Creada desde Postman\", \"categoria\": \"X\" }" },
+        "url": { "raw": "{{baseUrl}}/api/notas", "host": ["{{baseUrl}}"], "path": ["api","notas"] }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Files - List all",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/files",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Files - View file content",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/files/view?name=notes/example.note",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files", "view"],
+          "query": [
+            {
+              "key": "name",
+              "value": "notes/example.note",
+              "description": "Nombre del archivo a visualizar (puede incluir carpeta)"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT Files - Update file content",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"notes/example.note\",\n  \"content\": \"{\\n  \\\"id\\\": \\\"ejemplo-01\\\",\\n  \\\"titulo\\\": \\\"Archivo modificado desde Postman\\\",\\n  \\\"contenido\\\": \\\"Este contenido ha sido actualizado mediante la API\\\",\\n  \\\"categoria\\\": \\\"test\\\",\\n  \\\"createdAt\\\": \\\"2025-12-16T10:00:00Z\\\"\\n}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/files/update",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files", "update"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Files - Download file",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/files/download?name=notes/example.note",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files", "download"],
+          "query": [
+            {
+              "key": "name",
+              "value": "notes/example.note"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Files - Delete file",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/files/test-file.txt",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "files", "test-file.txt"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

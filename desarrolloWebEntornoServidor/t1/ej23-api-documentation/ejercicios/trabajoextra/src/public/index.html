@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestor de Notas (.note)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#a69d71;
+      --card:#ffffff;
+      --accent:#ca571a;
+      --muted:#c04141;
+      --soft:#eef2ff;
+      --radius:10px;
+      --shadow:0 6px 20px rgba(16,24,40,0.06);
+    }
+
+    html,body{height:100%}
+    body{font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#0f172a; -webkit-font-smoothing:antialiased}
+
+    .container{max-width:1100px;margin:28px auto;padding:18px}
+
+    header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+    .brand h1{font-size:1.15rem;margin:0;color:var(--accent);font-weight:700}
+    .brand .subtitle{color:var(--muted);font-size:0.9rem}
+
+    .auth{display:flex;gap:8px;align-items:center}
+    .auth input{border:1px solid #e6edf3;padding:8px;border-radius:8px;background:white}
+    .auth button{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+    .auth button:hover{filter:brightness(.95)}
+
+    .controls{display:flex;gap:12px;margin:12px 0;flex-wrap:wrap}
+    .panel{background:var(--card);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+
+    .upload-area{border:2px dashed rgba(37,99,235,0.14);padding:14px;border-radius:8px;text-align:center;color:var(--muted);background:linear-gradient(180deg, rgba(37,99,235,0.03), transparent)}
+
+    input[type="file"]{display:inline-block}
+
+    table{width:100%;border-collapse:collapse;margin-top:12px;font-size:0.95rem}
+    thead th{color:var(--muted);text-align:left;padding:10px 8px;font-weight:600;border-bottom:1px solid #eef2ff}
+    tbody td{padding:10px 8px;border-bottom:1px solid #f1f5f9}
+
+    .small{font-size:0.9rem;color:var(--muted)}
+    .actions button{margin-right:8px;padding:6px 8px;border-radius:8px;border:1px solid transparent;background:#f8fafc;cursor:pointer}
+    .actions button:hover{background:#f1f5f9}
+
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center;padding:20px}
+    .modal .card{background:var(--card);padding:18px;border-radius:12px;max-width:820px;width:100%;box-shadow: 0 10px 30px rgba(2,6,23,0.12)}
+    .hidden{display:none}
+
+    .pager{display:flex;gap:8px;align-items:center}
+    .pager button{background:#fff;border:1px solid #e6eefc;padding:6px 10px;border-radius:8px}
+
+    @media (max-width:900px){
+      .controls{flex-direction:column}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+      .auth{width:100%;justify-content:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>Gestor de Notas</h1>
+        <div class="small">Interfaz para ver, importar, exportar y editar notas</div>
+      </div>
+      <div class="auth panel" style="display:flex;gap:8px;align-items:center">
+        <input id="user" placeholder="usuario" style="width:110px" value="victor">
+        <input id="pass" placeholder="contraseña" type="password" style="width:130px" value="123456">
+        <button id="btnToken">Obtener token</button>
+        <div id="tokenBox" class="small">Token: <code id="tokenPreview">(ninguno)</code></div>
+      </div>
+    </header>
+
+    <section class="controls">
+      <div class="panel" style="flex:1;display:flex;gap:8px;align-items:center">
+        <input id="filterTitle" placeholder="Buscar título" style="flex:1">
+        <input id="filterContent" placeholder="Buscar contenido" style="flex:1">
+        <select id="sortBy">
+          <option value="">Orden</option>
+          <option value="created">Fecha</option>
+          <option value="titulo">Título</option>
+          <option value="size">Tamaño</option>
+        </select>
+        <select id="order">
+          <option value="asc">Asc</option>
+          <option value="desc">Desc</option>
+        </select>
+        <button id="btnSearch">Buscar</button>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="upload-area panel" id="uploadArea">Arrastra aquí o <label
+            style="color:var(--accent);cursor:pointer"><input id="fileInput" type="file" name="files" multiple
+              accept=".note" style="display:none"> selecciona ficheros</label></div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <button id="btnExportSelected">Exportar seleccionadas (ZIP)</button>
+          <button id="btnExportFiltered">Exportar resultados</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="small">Resultados: <span id="totalCount">0</span></div>
+        <div class="pager">
+          <button id="prevPage">« Anterior</button>
+          <span class="small">Página <span id="currentPage">1</span></span>
+          <button id="nextPage">Siguiente »</button>
+        </div>
+      </div>
+      <table id="notesTable" aria-label="Lista de notas">
+        <thead>
+          <tr>
+            <th><input id="selectAll" type="checkbox" class="select-checkbox"></th>
+            <th>Título</th>
+            <th>Contenido</th>
+            <th>Fecha</th>
+            <th>Tamaño</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="panel" style="margin-top:12px">
+      <h3>Gestor de ficheros (files/)</h3>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+        <input id="fileAnyInput" type="file" multiple />
+        <button id="btnUploadAny">Subir ficheros</button>
+        <button id="btnImportNotes">Importar .note</button>
+        <button id="btnRefreshFiles">Refrescar lista</button>
+        <div class="small">Soporta .pdf, .png, .jpg, etc.</div>
+      </div>
+      <table id="filesTable">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tamaño</th>
+            <th>Modificado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- Modal view/edit -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="card">
+      <h3 id="modalTitle">Ver nota</h3>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <input id="noteTitle" style="flex:1">
+        <input id="noteCategory" placeholder="Categoría" style="width:160px">
+      </div>
+      <textarea id="noteContent" rows="10" style="width:100%"></textarea>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button id="btnClose">Cerrar</button>
+        <button id="btnSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal view/edit files -->
+  <div id="fileModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="card">
+      <h3 id="fileModalTitle">Ver archivo</h3>
+      <div style="margin-bottom:8px">
+        <strong>Archivo:</strong> <span id="fileName"></span>
+      </div>
+      <textarea id="fileContent" rows="15" style="width:100%;font-family:monospace;font-size:0.9rem"></textarea>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button id="btnFileClose">Cerrar</button>
+        <button id="btnFileSave">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script>
+    const apiRoot = '';
+    let jwt = localStorage.getItem('jwt') || '';
+    let page = 1, perPage = 10, total = 0;
+    const $ = s => document.querySelector(s);
+
+    function authHeaders() { return jwt ? { 'Authorization': 'Bearer ' + jwt } : {}; }
+
+    async function getToken() {
+      const user = $('#user').value, pass = $('#pass').value;
+      const res = await fetch(apiRoot + '/api/auth/token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: user, password: pass }) });
+      if (!res.ok) { alert('Error autenticando'); return; }
+      jwt = await res.text(); localStorage.setItem('jwt', jwt); $('#tokenPreview').textContent = jwt.slice(0, 40) + '...';
+    }
+
+    async function loadNotes(p = 1) {
+      page = p; const q = new URLSearchParams();
+      const t = $('#filterTitle').value; if (t) q.set('title', t);
+      const c = $('#filterContent').value; if (c) q.set('content', c);
+      q.set('page', page); q.set('perPage', perPage);
+      const sortBy = $('#sortBy').value; if (sortBy) q.set('sortBy', sortBy);
+      const order = $('#order').value; if (order) q.set('order', order);
+      const res = await fetch(apiRoot + '/api/notas?' + q.toString(), { headers: { ...authHeaders(), 'Accept': 'application/json' } });
+      if (!res.ok) { if (res.status === 401) alert('No autorizado: obtén token'); else alert('Error obteniendo notas'); return; }
+      const data = await res.json();
+      const items = Array.isArray(data) ? data : (data.items || []);
+      total = data.totalItems || items.length; $('#totalCount').textContent = total; $('#currentPage').textContent = page;
+      const tbody = $('#notesTable tbody'); tbody.innerHTML = '';
+      for (const n of items) {
+        const tr = document.createElement('tr');
+        const created = new Date(n.createdAt || n.id || Date.now()).toLocaleString();
+        const size = ((n.titulo || '').length + (n.contenido || '').length) || '-';
+        tr.innerHTML = `
+          <td><input class="sel" type="checkbox" data-id="${n.id}"/></td>
+          <td>${escapeHtml(n.titulo || '')}</td>
+          <td>${escapeHtml((n.contenido || '').slice(0, 200))}</td>
+          <td class="small">${created}</td>
+          <td class="small">${size}</td>
+          <td class="actions">
+            <button data-id="${n.id}" class="view">Ver / Editar</button>
+            <button data-id="${n.id}" class="download">Descargar</button>
+            <button data-id="${n.id}" class="delete">Borrar</button>
+          </td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function escapeHtml(s) { return String(s || '').replace(/[&<>"]'/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": "&#39;" })[c]); }
+
+    // Upload drag & drop + input
+    const uploadArea = $('#uploadArea');
+    uploadArea.addEventListener('click', () => $('#fileInput').click());
+    uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.style.background = '#ecfeff'; });
+    uploadArea.addEventListener('dragleave', e => { uploadArea.style.background = ''; });
+    uploadArea.addEventListener('drop', async e => { e.preventDefault(); uploadArea.style.background = ''; const files = Array.from(e.dataTransfer.files); await uploadFiles(files); });
+    $('#fileInput').addEventListener('change', e => uploadFiles(Array.from(e.target.files)));
+
+    async function uploadFiles(files) {
+      if (!files.length) return;
+      const fd = new FormData(); files.forEach(f => fd.append('files', f));
+      // Use XMLHttpRequest for progress
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', apiRoot + '/api/notas/import');
+      if (jwt) xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
+      xhr.upload.onprogress = (ev) => { if (ev.lengthComputable) uploadArea.textContent = `Subiendo ${Math.round((ev.loaded / ev.total) * 100)}%`; };
+      xhr.onload = () => { uploadArea.textContent = 'Arrastra aquí o selecciona ficheros'; loadNotes(1); };
+      xhr.onerror = () => alert('Error subiendo ficheros');
+      xhr.send(fd);
+    }
+
+    // Table actions
+    $('#notesTable').addEventListener('click', async e => {
+      const btn = e.target.closest('button'); if (!btn) return; const id = btn.dataset.id;
+      if (btn.classList.contains('view')) {
+        const res = await fetch(apiRoot + '/api/notas/' + encodeURIComponent(id), { headers: { ...authHeaders() } });
+        if (!res.ok) return alert('No se pudo obtener nota');
+        const note = await res.json(); openModal(note);
+      }
+      if (btn.classList.contains('download')) {
+        const res = await fetch(apiRoot + '/api/notas/' + encodeURIComponent(id), { headers: { ...authHeaders() } });
+        if (!res.ok) return alert('No se pudo obtener nota');
+        const note = await res.json(); const blob = new Blob([JSON.stringify(note, null, 2)], { type: 'application/octet-stream' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (note.titulo || 'nota_' + note.id).replace(/[^a-z0-9\-_.]/gi, '_') + '.note'; document.body.appendChild(a); a.click(); a.remove();
+      }
+      if (btn.classList.contains('delete')) {
+        if (!confirm('Borrar nota?')) return; const res = await fetch(apiRoot + '/api/notas/' + encodeURIComponent(id), { method: 'DELETE', headers: { ...authHeaders() } });
+        if (res.status === 204) { loadNotes(page); } else { alert('No se pudo borrar'); }
+      }
+    });
+
+    // Modal
+    function openModal(note) { $('#modal').classList.remove('hidden'); $('#noteTitle').value = note.titulo || ''; $('#noteContent').value = note.contenido || ''; $('#noteCategory').value = note.categoria || note.grupo || ''; $('#modal').dataset.id = note.id; $('#modalTitle').textContent = 'Editar nota'; }
+    $('#btnClose').addEventListener('click', () => $('#modal').classList.add('hidden'));
+    $('#btnSave').addEventListener('click', async () => {
+      const id = $('#modal').dataset.id; const body = { titulo: $('#noteTitle').value, contenido: $('#noteContent').value, categoria: $('#noteCategory').value };
+      const res = await fetch(apiRoot + '/api/notas/' + encodeURIComponent(id), { method: 'PUT', headers: { ...authHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (!res.ok) return alert('Error guardando'); $('#modal').classList.add('hidden'); loadNotes(page);
+    });
+
+    // Bulk export selected using JSZip
+    $('#btnExportSelected').addEventListener('click', async () => {
+      const sels = Array.from(document.querySelectorAll('.sel:checked')).map(i => i.dataset.id);
+      if (!sels.length) return alert('Selecciona al menos una nota');
+      const zip = new JSZip();
+      for (const id of sels) { const r = await fetch(apiRoot + '/api/notas/' + encodeURIComponent(id), { headers: { ...authHeaders() } }); if (!r.ok) continue; const note = await r.json(); zip.file((note.titulo || 'nota_' + note.id).replace(/[^a-z0-9\-_.]/gi, '_') + '.note', JSON.stringify(note, null, 2)); }
+      const content = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(content); a.download = 'notas_seleccionadas.zip'; document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    // Export filtered via API
+    $('#btnExportFiltered').addEventListener('click', () => {
+      const q = new URLSearchParams(); const t = $('#filterTitle').value; if (t) q.set('title', t); const c = $('#filterContent').value; if (c) q.set('content', c); q.set('perPage', 1000);
+      // Use window.open with Authorization via bearer cookie not possible; instead fetch blob
+      fetch(apiRoot + '/api/notas/export?' + q.toString(), { headers: { ...authHeaders() } }).then(async res => { if (!res.ok) { const j = await res.json().catch(() => ({})); alert('Error: ' + (j.error || res.status)); return; } const blob = await res.blob(); const cd = res.headers.get('content-disposition') || ''; const m = cd.match(/filename="?([^";]+)"?/); const fname = m ? m[1] : 'notas_export.zip'; const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; document.body.appendChild(a); a.click(); a.remove(); }).catch(() => alert('Error exportando'));
+    });
+
+    // Pagination
+    $('#prevPage').addEventListener('click', () => { if (page > 1) loadNotes(page - 1); });
+    $('#nextPage').addEventListener('click', () => { if ((page * perPage) < total) loadNotes(page + 1); });
+
+    // Select all
+    $('#selectAll').addEventListener('change', e => { document.querySelectorAll('.sel').forEach(cb => cb.checked = e.target.checked); });
+
+    // Init
+    $('#btnToken').addEventListener('click', getToken);
+    $('#btnSearch').addEventListener('click', () => loadNotes(1));
+    if (jwt) $('#tokenPreview').textContent = jwt.slice(0, 40) + '...';
+    loadNotes(1);
+    // Files manager
+    async function loadFiles() {
+      const res = await fetch(apiRoot + '/api/files', { headers: { ...authHeaders() } });
+      if (!res.ok) return; const files = await res.json(); const tbody = document.querySelector('#filesTable tbody'); tbody.innerHTML = '';
+      for (const f of files) { const tr = document.createElement('tr'); tr.innerHTML = `<td>${escapeHtml(f.name)}</td><td class="small">${(f.size / 1024).toFixed(1)} KB</td><td class="small">${new Date(f.mtime).toLocaleString()}</td><td class="actions"><button class="fview" data-name="${encodeURIComponent(f.name)}">Ver</button> <button class="fedit" data-name="${encodeURIComponent(f.name)}">Modificar</button> <button class="fdownload" data-name="${encodeURIComponent(f.name)}">Descargar</button> <button class="fdelete" data-name="${encodeURIComponent(f.name)}">Borrar</button></td>`; tbody.appendChild(tr); }
+    }
+
+    document.getElementById('btnRefreshFiles').addEventListener('click', loadFiles);
+    document.getElementById('btnUploadAny').addEventListener('click', async () => {
+      const input = document.getElementById('fileAnyInput'); if (!input.files.length) return alert('Selecciona ficheros'); const fd = new FormData(); for (const f of input.files) fd.append('files', f);
+      const res = await fetch(apiRoot + '/api/files/upload', { method: 'POST', headers: { ...authHeaders() }, body: fd });
+      if (!res.ok) { const j = await res.json().catch(() => ({})); alert('Error: ' + (j.error || res.status)); return; }
+      alert('Subidos'); input.value = ''; loadFiles();
+    });
+
+    // Import .note files from files manager input
+    document.getElementById('btnImportNotes').addEventListener('click', async () => {
+      const input = document.getElementById('fileAnyInput');
+      if (!input.files.length) return alert('Selecciona ficheros .note');
+      const notes = Array.from(input.files).filter(f => f.name && f.name.toLowerCase().endsWith('.note'));
+      if (!notes.length) return alert('No hay ficheros .note en la selección');
+      const fd = new FormData(); for (const f of notes) fd.append('files', f);
+      const res = await fetch(apiRoot + '/api/notas/import', { method: 'POST', headers: { ...authHeaders() }, body: fd });
+      if (!res.ok) { const j = await res.json().catch(() => ({})); alert('Error importando: ' + (j.error || res.status)); return; }
+      const result = await res.json().catch(() => ({})); alert('Importadas: ' + (result.imported || 0)); input.value = ''; loadNotes(1); loadFiles();
+    });
+
+    document.querySelector('#filesTable tbody').addEventListener('click', async (e) => {
+      const btn = e.target.closest('button'); if (!btn) return; const name = decodeURIComponent(btn.dataset.name);
+      if (btn.classList.contains('fview')) {
+        const res = await fetch(apiRoot + '/api/files/view?name=' + encodeURIComponent(name), { headers: { ...authHeaders() } });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); return alert('Error leyendo archivo: ' + (j.error || res.status)); }
+        const data = await res.json();
+        openFileModal(data.name, data.content, false);
+      }
+      if (btn.classList.contains('fedit')) {
+        const res = await fetch(apiRoot + '/api/files/view?name=' + encodeURIComponent(name), { headers: { ...authHeaders() } });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); return alert('Error leyendo archivo: ' + (j.error || res.status)); }
+        const data = await res.json();
+        openFileModal(data.name, data.content, true);
+      }
+      if (btn.classList.contains('fdownload')) {
+        const res = await fetch(apiRoot + '/api/files/download?name=' + encodeURIComponent(name), { headers: { ...authHeaders() } });
+        if (!res.ok) { const j = await res.json().catch(() => ({})); return alert('Error descargando: ' + (j.error || res.status)); }
+        const blob = await res.blob(); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+      }
+      if (btn.classList.contains('fdelete')) { if (!confirm('Borrar ' + name + '?')) return; const res = await fetch(apiRoot + '/api/files/' + encodeURIComponent(name), { method: 'DELETE', headers: { ...authHeaders() } }); if (!res.ok) { const j = await res.json().catch(() => ({})); return alert('No se pudo borrar: ' + (j.error || res.status)); } loadFiles(); }
+    });
+
+    // auto-load files if authorized
+    if (jwt) loadFiles();
+
+    // File modal functions
+    function openFileModal(name, content, editable) {
+      $('#fileModal').classList.remove('hidden');
+      $('#fileName').textContent = name;
+      $('#fileContent').value = content;
+      $('#fileContent').readOnly = !editable;
+      $('#fileModal').dataset.filename = name;
+      $('#fileModalTitle').textContent = editable ? 'Modificar archivo' : 'Ver archivo';
+      $('#btnFileSave').style.display = editable ? 'inline-block' : 'none';
+    }
+
+    $('#btnFileClose').addEventListener('click', () => $('#fileModal').classList.add('hidden'));
+    
+    $('#btnFileSave').addEventListener('click', async () => {
+      const name = $('#fileModal').dataset.filename;
+      const content = $('#fileContent').value;
+      const res = await fetch(apiRoot + '/api/files/update', {
+        method: 'PUT',
+        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, content: content })
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        return alert('Error guardando: ' + (j.error || res.status));
+      }
+      alert('Archivo guardado correctamente');
+      $('#fileModal').classList.add('hidden');
+      loadFiles();
+    });
+  </script>
+</body>
+
+</html>

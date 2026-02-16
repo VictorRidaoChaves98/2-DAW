@@ -1,0 +1,17 @@
+{
+    "name": "gestor-notas",
+    "version": "1.0.0",
+    "description": "Gestor de notas con scripts de acceso directo",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "ver": "node index.js ver",
+        "agregar": "node index.js agregar",
+        "borrar": "node index.js borrar"
+    },
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "readline-sync": "^1.4.10"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "gestor-notas",
+    "version": "1.0.0",
+    "description": "Gestor de notas con scripts de acceso directo",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "test": "jest --coverage",
+        "ver": "node index.js ver",
+        "agregar": "node index.js agregar",
+        "borrar": "node index.js borrar"
+    },
+    "dependencies": {
+        "chalk": "^5.6.2",
+        "express": "^5.1.0",
+        "morgan": "^1.10.1",
+        "readline-sync": "^1.4.10",
+        "winston": "^3.18.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.28.5",
+        "@babel/preset-env": "^7.28.5",
+        "babel-jest": "^30.2.0",
+        "jest": "^30.2.0",
+        "nodemon": "^3.1.11",
+        "supertest": "^7.1.4"
+    }
+}

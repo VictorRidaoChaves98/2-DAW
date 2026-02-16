@@ -1,0 +1,18 @@
+# Scripts para gestionar la carpeta "files" y sus archivos .js
+
+# Crear la carpeta principal "files"
+npm run crear
+
+# Crear un archivo .js dentro de "files"
+# Sustituye <nombreArchivo> por el nombre que quieras
+npm run crear:js -- <nombreArchivo>
+
+# Crear una carpeta dentro de "files"
+# Sustituye <nombreCarpeta> por el nombre que quieras
+npm run crear:carpeta -- <nombreCarpeta>
+
+# Borrar todos los archivos .js dentro de "files"
+npm run borrar:js
+
+# Borrar completamente la carpeta "files"
+npm run borrar

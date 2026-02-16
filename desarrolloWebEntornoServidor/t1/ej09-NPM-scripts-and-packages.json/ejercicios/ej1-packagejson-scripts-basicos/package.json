@@ -1,0 +1,20 @@
+{
+    "name": "dwes-ejemplos-simple",
+    "version": "1.0.0",
+    "description": "Ejercicios de npm y scripts básicos",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "clear": "del node_modules && del package-lock.json",
+        "test": "echo \"No hay tests todavía\""
+    },
+    "author": "Victor Ridao",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.3.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    }
+}
